@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://finalscave.github.io">
   <title>GoLand环境配置踩坑 | Scave&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:   我就奇了怪了，我明明配置了GOROOT环境变量，于是开始疯狂百度，试了很多种方法都还是有问题，选择Go">
+  <meta name="description" content="昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GoLand环境配置踩坑">
 <meta property="og:url" content="https://finalscave.github.io/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/index.html">
 <meta property="og:site_name" content="Scave&#39;s Blog">
-<meta property="og:description" content="昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:   我就奇了怪了，我明明配置了GOROOT环境变量，于是开始疯狂百度，试了很多种方法都还是有问题，选择Go">
+<meta property="og:description" content="昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://finalscave.github.io/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/goroot_not.png">
 <meta property="og:image" content="https://finalscave.github.io/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/gosdk_error.png">
 <meta property="og:image" content="https://finalscave.github.io/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/go_v.png">
 <meta property="article:published_time" content="2021-11-09T06:56:18.000Z">
-<meta property="article:modified_time" content="2021-11-09T10:41:48.970Z">
+<meta property="article:modified_time" content="2021-11-09T10:45:39.369Z">
 <meta property="article:author" content="Scave">
 <meta property="article:tag" content="Golang">
 <meta property="article:tag" content="环境配置">
@@ -173,6 +173,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:</p>
+<span id="more"></span>
+
 <img src="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/goroot_not.png">
 
 <p>我就奇了怪了，我明明配置了GOROOT环境变量，于是开始疯狂百度，试了很多种方法都还是有问题，选择Go sdk根目录总是会出现这个问题：</p>

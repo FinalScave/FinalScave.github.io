@@ -168,16 +168,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:</p>
-<img src="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/goroot_not.png">
-
-<p>我就奇了怪了，我明明配置了GOROOT环境变量，于是开始疯狂百度，试了很多种方法都还是有问题，选择Go sdk根目录总是会出现这个问题：</p>
-<img src="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/gosdk_error.png">
-
-<p>百般折腾之下，决定打开小梯子，谷歌一番，发现原来新版Go sdk埋了一个坑，需要你自己去/src/runtime/internal/sys/zversion.go文件里去添加一行常量定义当前Go版本:</p>
-<img src="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/go_v.png" style="zoom: 80%;">
-
-<p>再次打开GoLand选择Go sdk根目录就可以了</p>
-
+        
+          <a class="article-more-a" href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/#more">more >></a>
+        
       
 
       
