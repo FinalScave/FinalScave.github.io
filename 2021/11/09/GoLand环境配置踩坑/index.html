@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://finalscave.github.io">
-  <title>Hello World | Scave&#39;s Blog</title>
+  <title>GoLand环境配置踩坑 | Scave&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天成功开通Git page，有了自己的博客了，四年前我就想搞博客了，但是碍于银两不够，就没有去搞，今天用Git page成功开通了博客，从此以后就在这个博客记录学习过程和问题解决方案了！">
+  <meta name="description" content="昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:  我就奇了怪了，我明明配置了GOROOT环境变量，于是开始疯狂百度，试了很多种方法都还是有问题，选择Go">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://finalscave.github.io/2021/11/09/Hello-World/index.html">
+<meta property="og:title" content="GoLand环境配置踩坑">
+<meta property="og:url" content="https://finalscave.github.io/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/index.html">
 <meta property="og:site_name" content="Scave&#39;s Blog">
-<meta property="og:description" content="今天成功开通Git page，有了自己的博客了，四年前我就想搞博客了，但是碍于银两不够，就没有去搞，今天用Git page成功开通了博客，从此以后就在这个博客记录学习过程和问题解决方案了！">
+<meta property="og:description" content="昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:  我就奇了怪了，我明明配置了GOROOT环境变量，于是开始疯狂百度，试了很多种方法都还是有问题，选择Go">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-09T05:29:32.000Z">
-<meta property="article:modified_time" content="2021-11-09T06:16:55.853Z">
+<meta property="og:image" content="https://finalscave.github.io/.io//Projects/Github/hexo/source_posts/GoLand环境配置踩坑/goroot_not.png">
+<meta property="og:image" content="https://finalscave.github.io/.io//Projects/Github/hexo/source/_posts/GoLand环境配置踩坑/gosdk_error.png">
+<meta property="og:image" content="https://finalscave.github.io/.io//Projects/Github/hexo/source/_posts/GoLand环境配置踩坑/go_v.png">
+<meta property="article:published_time" content="2021-11-09T06:56:18.000Z">
+<meta property="article:modified_time" content="2021-11-09T07:25:35.059Z">
 <meta property="article:author" content="Scave">
 <meta property="article:tag" content="Scave|Blog|Linux开发|Android开发|Java开发|Web开发|C++|Python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://finalscave.github.io/.io//Projects/Github/hexo/source_posts/GoLand环境配置踩坑/goroot_not.png">
   
     <link rel="alternative" href="/atom.xml" title="Scave&#39;s Blog" type="application/atom+xml">
   
@@ -147,27 +151,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hello-World" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-GoLand环境配置踩坑" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      GoLand环境配置踩坑
     </h1>
   
 
         
-        <a href="/2021/11/09/Hello-World/" class="archive-article-date">
-  	<time datetime="2021-11-09T05:29:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
+        <a href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" class="archive-article-date">
+  	<time datetime="2021-11-09T06:56:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天成功开通Git page，有了自己的博客了，四年前我就想搞博客了，但是碍于银两不够，就没有去搞，今天用Git page成功开通了博客，从此以后就在这个博客记录学习过程和问题解决方案了！</p>
+        <p>昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:</p>
+<p><img src="/.io//Projects\Github\hexo\source_posts\GoLand环境配置踩坑\goroot_not.png" alt="goroot_not"></p>
+<p>我就奇了怪了，我明明配置了GOROOT环境变量，于是开始疯狂百度，试了很多种方法都还是有问题，选择Go sdk根目录总是会出现这个问题：</p>
+<img src="/.io//Projects\Github\hexo\source\_posts\GoLand环境配置踩坑\gosdk_error.png">
+
+<p>百般折腾之下，决定打开小梯子，谷歌一番，发现原来新版Go sdk埋了一个坑，需要你自己去/src/runtime/internal/sys/zversion.go文件里去添加一行常量定义当前Go版本:</p>
+<img src="/.io//Projects\Github\hexo\source\_posts\GoLand环境配置踩坑\go_v.png" style="zoom: 80%;">
+
+<p>再次打开GoLand选择Go sdk根目录就可以了</p>
 
       
 
@@ -247,7 +259,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://finalscave.github.io/2021/11/09/Hello-World/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://finalscave.github.io/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,15 +273,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/11/09/Markdown-test/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          GoLand环境配置踩坑
-        
-      </div>
-    </a>
   
+    <a href="/2021/11/09/Markdown-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">GoLand环境配置踩坑</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
