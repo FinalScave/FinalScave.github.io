@@ -16,8 +16,9 @@
 <meta property="og:description" content="昨天在编程小小窝里面，蛋蛋写项目的时候遇到一个问题，他发现在switch-case语句里面不能定义同名的变量：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://finalscave.github.io/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/error.png">
+<meta property="og:image" content="https://finalscave.github.io/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/correct.pg">
 <meta property="article:published_time" content="2021-11-10T02:52:37.000Z">
-<meta property="article:modified_time" content="2021-11-10T03:06:42.457Z">
+<meta property="article:modified_time" content="2021-11-10T03:09:39.868Z">
 <meta property="article:author" content="Scave">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -174,7 +175,7 @@
 
 <p>这到底是是为什么呢？</p>
 <p>首先我们需要了解，在Java中，{…}表示一个块,而图中的switch-case语句，可以发现，所有case其实都在同一个语句块里(只有switch具有{})，而case块却没有{}，所以会出现变量名冲突的情况，在case后面加{}就可以解决这个问题了：</p>
-<p>&lt;img src=”correct.png“ /&gt;</p>
+<img src="/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/correct.pg">
 
       
 
