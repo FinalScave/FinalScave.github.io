@@ -168,13 +168,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>我从初中二年级就开始接触Java，现在已经过去七年了，对一些问题还是比较有看法，比如下面要说的Java线程问题。昨天有个群友在群里问，Java的Thread是不是执行完任务后就销毁了，我回答了“是”，Java的Thread在执行完任务后，一般情况下，确实会自动销毁，但是也要避免意外情况的出现，意外情况很多，这里就不举例了，我们直接来看下面的两段代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...<span class="keyword">do</span> something</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService service = Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line">service.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...<span class="keyword">do</span> something</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>我们知道，线程的创建和销毁，都要消耗不少内存，如果每次需要使用线程时，都要去重新创建一个线程，那难免会造成资源的浪费，而且无限的创建，各个线程间相互竞争，会导致过多占用系统资源而导致系统瘫痪，所以在执行批量任务的时候，最好创建可复用的线程，来进行操作。</p>
-<p>如上面第二段代码，ExecutorService是Java提供的线程池，它能够创建可复用的线程来执行任务，当任务数超过线程数量时，线程池就会将任务加入队列，等待有空闲的线程时再依次执行。</p>
-
+        
+          <a class="article-more-a" href="/2021/11/12/%E5%85%B3%E4%BA%8EJava%E4%BD%BF%E7%94%A8Thread%E7%9A%84%E9%97%AE%E9%A2%98/#more">more >></a>
+        
       
 
       
