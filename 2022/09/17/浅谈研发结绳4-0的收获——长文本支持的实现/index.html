@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://finalscave.github.io">
   <title>浅谈研发结绳4.0的收获——长文本支持的实现 | Scave&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Scave&#39;s personal technology blog mainly records his usual learning summary, problem solving and other related contents. This blog is used as his own technical reserve to accompany his growth and progr">
+  <meta name="description" content="如果我们学过Lua&#x2F;Python语言，应该知道它们是支持长文本的（当然，在Java新版本也是支持长文本的，不过我还在用Java8），举例：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈研发结绳4.0的收获——长文本支持的实现">
 <meta property="og:url" content="https://finalscave.github.io/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Scave&#39;s Blog">
-<meta property="og:description" content="Scave&#39;s personal technology blog mainly records his usual learning summary, problem solving and other related contents. This blog is used as his own technical reserve to accompany his growth and progr">
+<meta property="og:description" content="如果我们学过Lua&#x2F;Python语言，应该知道它们是支持长文本的（当然，在Java新版本也是支持长文本的，不过我还在用Java8），举例：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-17T14:39:23.000Z">
-<meta property="article:modified_time" content="2022-09-17T14:39:23.483Z">
+<meta property="article:modified_time" content="2022-09-17T17:52:32.134Z">
 <meta property="article:author" content="Scave">
-<meta property="article:tag" content="Scave|Blog|Linux开发|Android开发|Java开发|Web开发|C++|Python">
+<meta property="article:tag" content="心得">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Scave&#39;s Blog" type="application/atom+xml">
@@ -171,7 +171,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>如果我们学过Lua/Python语言，应该知道它们是支持长文本的（当然，在Java新版本也是支持长文本的，不过我还在用Java8），<br>举例：</p>
+<span id="more"></span>
+<p>Lua语言：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line">    str = <span class="string">[[</span></span><br><span class="line"><span class="string">        我是超长文本</span></span><br><span class="line"><span class="string">        来打我呀，嘿嘿，用起来方便吧，你敢删我？</span></span><br><span class="line"><span class="string">    ]]</span></span><br><span class="line">    <span class="built_in">print</span>(str)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Python语言：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__main__</span>():</span></span><br><span class="line">    <span class="built_in">str</span> = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        我是超长文本</span></span><br><span class="line"><span class="string">        来打我呀，嘿嘿，用起来方便吧，你敢删我？&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
+<p>我的远古时代的Java8：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String str = <span class="string">&quot;我是不支持长文本的&quot;</span></span><br><span class="line">        + <span class="string">&quot;，希望你不要删掉我&quot;</span>;</span><br><span class="line">    sout(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，长文本支持直接换行，而我远古时代的Java8还得拼接（不过idea有支持可以自动拼接）<br>这无疑是一个很好的特性，所以结绳4.0也引入了长文本，我们来看结绳4.0是如何实现的。</p>
+<p>从上面代码看来，Lua语言的长文本符号比较好看’[[]]’，也比较形象，所以结绳4.0的长文本符号也是[[]]，<br>首先我们要知道，将一串长文本转换为普通文本需要做些什么：<br>（1）将换行转义为\n<br>（2）将”转义为&quot;<br>（3）一些细节处理<br>OK，其实只要知道上面这三个就知道怎么做了，在解析代码时，直接将长文本解析为普通文本（/手动狗头）</p>
+
       
 
       
@@ -210,6 +220,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -410,11 +431,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">心得</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">心得</a>
               </li>
             
             <div class="clearfix"></div>
