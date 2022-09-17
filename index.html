@@ -151,29 +151,29 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-浅谈研发结绳4-0的收获——长文本支持的实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-浅谈研发结绳4-0的收获——百万行代码级别的项目管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——长文本支持的实现</a>
+      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E7%99%BE%E4%B8%87%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%88%AB%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">浅谈研发结绳4.0的收获——百万行代码级别的项目管理</a>
     </h1>
   
 
         
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2022-09-17T14:39:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E7%99%BE%E4%B8%87%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%88%AB%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" class="archive-article-date">
+  	<time datetime="2022-09-16T17:56:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果我们学过Lua/Python语言，应该知道它们是支持长文本的（当然，在Java新版本也是支持长文本的，不过我还在用Java8），<br>举例：</p>
+        <p>前几天用AS的Statistic统计了一下结绳4.0的代码行数，结果让我大吃一惊（其实也在意料之中），<br>毕竟我们团队三年持续开发，有个100多万行也是正常的，来看具体数据：</p>
         
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
+          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E7%99%BE%E4%B8%87%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%88%AB%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/#more">more >></a>
         
       
 
@@ -197,7 +197,159 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E7%99%BE%E4%B8%87%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%88%AB%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="浅谈研发结绳4.0的收获——从spring-浅谈研发结绳4.0的收获——从Spring AOP学到的变量自动初始化" class="article article-type-浅谈研发结绳4.0的收获——从spring  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/">AOP学到的变量自动初始化</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2022-09-16T16:27:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在结绳3.0及其旧版本中，需要用户自己去创建变量是不友好的，很多新手可能也无法理解，我就在想，能不能设计出一种方案实现自动初始化变量。</p>
+        
+          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-浅谈研发结绳4-0的收获——长文本支持的实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——长文本支持的实现</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2022-09-16T14:39:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果我们学过Lua/Python语言，应该知道它们是支持长文本的（当然，在Java新版本也是支持长文本的，不过我还在用Java8），<br>举例：</p>
+        
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E9%95%BF%E6%96%87%E6%9C%AC%E6%94%AF%E6%8C%81%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
         </p>
       
 
@@ -234,13 +386,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——变量交换式的实现</a>
+      <a class="article-title" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——变量交换式的实现</a>
     </h1>
   
 
         
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2022-09-17T14:38:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+        <a href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2022-09-16T14:38:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-16</time>
 </a>
         
       </header>
@@ -249,7 +401,7 @@
       
         <p>相信大家都学过C语言（应该是大一计算机相关专业必学语言），也写过冒泡排序，其中有一段代码我觉得不是很方便，<br>那就是交换两个数组成员的值，需要用swap函数，或者定义临时变量用于交换（伪代码）：</p>
         
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
         
       
 
@@ -273,7 +425,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
         </p>
       
 
@@ -310,13 +462,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——方法参数默认值的实现</a>
+      <a class="article-title" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——方法参数默认值的实现</a>
     </h1>
   
 
         
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2022-09-17T14:36:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+        <a href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2022-09-16T14:36:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-16</time>
 </a>
         
       </header>
@@ -325,7 +477,7 @@
       
         <p>相信学过C++/Kotlin的同志都知道，这两门语言都支持参数默认值，这其实是非常好用的，所以结绳中文编程也引入了这个特性。<br>举例（伪代码）：</p>
         
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
         
       
 
@@ -349,7 +501,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
         </p>
       
 
@@ -386,13 +538,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——运算符重载的实现</a>
+      <a class="article-title" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/">浅谈研发结绳4.0的收获——运算符重载的实现</a>
     </h1>
   
 
         
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2022-09-17T14:18:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+        <a href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2022-09-16T14:18:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-16</time>
 </a>
         
       </header>
@@ -401,7 +553,7 @@
       
         <p>相信学过C++/Kotlin等支持运算符重载语言的同志们都知道运算符重载在代码编写过程中是十分方便的，举个反例：<br>Java无法在代码层面实现运算符重载，所以大整数之类的使用起来就稍显繁杂：</p>
         
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/#more">more >></a>
         
       
 
@@ -425,7 +577,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
         </p>
       
 
@@ -462,13 +614,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/">浅谈研发结绳4.0的收获——从Xamarin学到目标平台软件自动化配置的设计方案</a>
+      <a class="article-title" href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/">浅谈研发结绳4.0的收获——从Xamarin学到目标平台软件自动化配置的设计方案</a>
     </h1>
   
 
         
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2022-09-17T13:44:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+        <a href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/" class="archive-article-date">
+  	<time datetime="2022-09-15T13:44:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-15</time>
 </a>
         
       </header>
@@ -477,7 +629,7 @@
       
         <p>Xamarin是微软推出的基于.NET平台进行移动开发的应用框架，其实与Flutter比较类似，但二者的实现方式是大有不同的，<br>具体差别就不进行叙述，因为这不是本文的主要内容，就个人爱好而言，我更偏向于Xamarin</p>
         
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/#more">more >></a>
+          <a class="article-more-a" href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/#more">more >></a>
         
       
 
@@ -501,7 +653,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/">展开全文 >></a>
         </p>
       
 
@@ -538,13 +690,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/">浅谈研发结绳4.0的收获——从Objective-C学到指代类的设计</a>
+      <a class="article-title" href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/">浅谈研发结绳4.0的收获——从Objective-C学到指代类的设计</a>
     </h1>
   
 
         
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/" class="archive-article-date">
-  	<time datetime="2022-09-17T11:22:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+        <a href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/" class="archive-article-date">
+  	<time datetime="2022-09-15T11:22:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-15</time>
 </a>
         
       </header>
@@ -553,7 +705,7 @@
       
         <p>我比较擅长的语言应该是Java/Python/C++，第一眼看到Objective-C的时候，我在想这是什么反人类语言啊<br>但是在百度百科上看到对Objective-C的介绍是：它是C语言的超集，当时我人就傻了，这跟C语言能扯上一点关系吗？<br>好吧，是我太肤浅了，我去了解了一下，发现它虽然是一门面向对象的语言，但是与通常的面向对象语言不一样</p>
         
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/#more">more >></a>
+          <a class="article-more-a" href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/#more">more >></a>
         
       
 
@@ -577,7 +729,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/09/15/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EObjective-C%E5%AD%A6%E5%88%B0%E6%8C%87%E4%BB%A3%E7%B1%BB%E7%9A%84%E8%AE%BE%E8%AE%A1/">展开全文 >></a>
         </p>
       
 
@@ -614,13 +766,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/">浅谈研发结绳4.0的收获——感慨</a>
+      <a class="article-title" href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/">浅谈研发结绳4.0的收获——感慨</a>
     </h1>
   
 
         
-        <a href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/" class="archive-article-date">
-  	<time datetime="2022-09-16T06:40:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-16</time>
+        <a href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/" class="archive-article-date">
+  	<time datetime="2022-09-14T06:40:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-14</time>
 </a>
         
       </header>
@@ -629,7 +781,7 @@
       
         <p>经历了两年的苦战，我们团队终于完成了结绳4.0的研发，目前已经处于公测阶段，预计国庆节就可以发布正式版<br>此时，心中感慨万千，于是打算写下这么多年来我的一些收获与大家分享</p>
         
-          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/#more">more >></a>
+          <a class="article-more-a" href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/#more">more >></a>
         
       
 
@@ -653,7 +805,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/16/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/">展开全文 >></a>
         </p>
       
 
@@ -730,162 +882,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/11/12/%E5%85%B3%E4%BA%8EJava%E4%BD%BF%E7%94%A8Thread%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java-switch-case语句中变量定义重名的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/">Java switch-case语句中变量定义重名的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-11-10T02:52:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天在编程小小窝里面，蛋蛋写项目的时候遇到一个问题，他发现在switch-case语句里面不能定义同名的变量：<br><img src="/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/error.png"></p>
-        
-          <a class="article-more-a" href="/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/10/Java-switch-case%E8%AF%AD%E5%8F%A5%E4%B8%AD%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-GoLand环境配置踩坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">GoLand环境配置踩坑</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" class="archive-article-date">
-  	<time datetime="2021-11-09T06:56:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天在大师兄的推荐下，心血来潮，准备开始学习Golang。于是乎去百度下载了GoLand破解版，在我的编程小小窝里面，询问了各位群友他们常用的Go版本是哪个，他们说都可以，于是乎我就按照百度的教程安装了Go最新版本1.17.3，结果一打开GoLand，提示GOROOT not define:</p>
-        
-          <a class="article-more-a" href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境配置</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">展开全文 >></a>
         </p>
       
 
