@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://finalscave.github.io">
-  <title>浅谈研发结绳4.0的收获——运算符重载的实现 | Scave&#39;s Blog</title>
+  <title>浅谈研发结绳4.0的收获——方法参数默认值的实现 | Scave&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="相信学过C++&#x2F;Kotlin等支持运算符重载语言的同志们都知道运算符重载在代码编写过程中是十分方便的，举个反例：Java无法在代码层面实现运算符重载，所以大整数之类的使用起来就稍显繁杂：">
+  <meta name="description" content="相信学过C++&#x2F;Kotlin的同志都知道，这两门语言都支持参数默认值，这其实是非常好用的，所以结绳中文编程也引入了这个特性。举例（伪代码）：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈研发结绳4.0的收获——运算符重载的实现">
-<meta property="og:url" content="https://finalscave.github.io/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:title" content="浅谈研发结绳4.0的收获——方法参数默认值的实现">
+<meta property="og:url" content="https://finalscave.github.io/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Scave&#39;s Blog">
-<meta property="og:description" content="相信学过C++&#x2F;Kotlin等支持运算符重载语言的同志们都知道运算符重载在代码编写过程中是十分方便的，举个反例：Java无法在代码层面实现运算符重载，所以大整数之类的使用起来就稍显繁杂：">
+<meta property="og:description" content="相信学过C++&#x2F;Kotlin的同志都知道，这两门语言都支持参数默认值，这其实是非常好用的，所以结绳中文编程也引入了这个特性。举例（伪代码）：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-17T14:18:51.000Z">
-<meta property="article:modified_time" content="2022-09-17T17:13:16.849Z">
+<meta property="article:published_time" content="2022-09-17T14:36:54.000Z">
+<meta property="article:modified_time" content="2022-09-17T17:23:25.477Z">
 <meta property="article:author" content="Scave">
 <meta property="article:tag" content="心得">
 <meta name="twitter:card" content="summary">
@@ -151,45 +151,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-浅谈研发结绳4-0的收获——运算符重载的实现" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-浅谈研发结绳4-0的收获——方法参数默认值的实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      浅谈研发结绳4.0的收获——运算符重载的实现
+      浅谈研发结绳4.0的收获——方法参数默认值的实现
     </h1>
   
 
         
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-  	<time datetime="2022-09-17T14:18:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
+        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2022-09-17T14:36:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>相信学过C++/Kotlin等支持运算符重载语言的同志们都知道运算符重载在代码编写过程中是十分方便的，举个反例：<br>Java无法在代码层面实现运算符重载，所以大整数之类的使用起来就稍显繁杂：</p>
+        <p>相信学过C++/Kotlin的同志都知道，这两门语言都支持参数默认值，这其实是非常好用的，所以结绳中文编程也引入了这个特性。<br>举例（伪代码）：</p>
 <span id="more"></span>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger num1 = <span class="keyword">new</span> BigInteger(<span class="string">&quot;12456&quot;</span>);</span><br><span class="line">BigInteger num2 = <span class="keyword">new</span> BigInteger(<span class="string">&quot;325456&quot;</span>);</span><br><span class="line">sout(num1.multiply(num2));</span><br></pre></td></tr></table></figure>
-<p>很显然一个简单的乘法运算被复杂化了，如果是支持运算符重载：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger num1 = <span class="string">&quot;12456&quot;</span>;</span><br><span class="line">BigInteger num2 = <span class="string">&quot;325456&quot;</span>;</span><br><span class="line">sout(num1 * num2);</span><br></pre></td></tr></table></figure>
-<p>这样用起来方便多了，所以结绳4.0支持了运算符重载，并且不受任何目标平台影响</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">变量 坐标<span class="number">1</span> : 坐标 = (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">变量 坐标<span class="number">2</span> : 坐标 = (<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">调试输出(坐标<span class="number">1</span> * 坐标<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>可以注意到，赋值运算符=与其他二元运算符是不一样的，所以=需要特殊实现，<br>了解语法树的同志们都知道，二元运算(Binary)一般都是这样的结构：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Left</span><br><span class="line">Right</span><br><span class="line">Operator</span><br></pre></td></tr></table></figure>
-<p>再来看方法调用(MethodInvocation)的结构：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Selector</span><br><span class="line">MethodName</span><br></pre></td></tr></table></figure>
-<p>如果我们仔细想一想会发现，MethodInvocation可以是一个Operator固定为句点运算符’.’的Binary，<br>Selector为Binary的Left，MethodName为Binary的Right，<br>那么在进行语法树标注的时候，当在标注二元运算式时，就可以查找左值或右值中是否存在对应运算符的重载方法，<br>如果有就将当前二元运算式修改为方法调用表达式，这样就轻松实现运算符重载了。</p>
-<p>我们再来看下面一段代码（伪代码）：</p>
-<!--more-->
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Coordinate</span></span></span><br><span class="line"><span class="class">    <span class="title">property</span> <span class="title">x</span>, <span class="title">y</span></span></span><br><span class="line"><span class="class">    <span class="title">operator</span> </span>=(x, y)</span><br><span class="line">        <span class="keyword">var</span> coordinate = <span class="keyword">new</span> Coordinate()</span><br><span class="line">        coordinate.x = x</span><br><span class="line">        coordinate.y = y</span><br><span class="line">        <span class="keyword">return</span> coordinate</span><br><span class="line"></span><br><span class="line"><span class="comment">//这样获得一个坐标变量就太便捷了</span></span><br><span class="line"><span class="keyword">var</span> coordinate : Coordinate = (<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>结绳4.0要支持多个目标平台，那么结绳到底是如何实现对赋值运算符重载的呢？<br>其实很简单，所有面向对象的语言都有一个共性，肯定有方法/函数，如何让重载=时是去调用方法，那就肯定好做多了</p>
-<p>实现过程：<br>首先，了解语法树的同志都知道，在进行语法树标注的时候会标注到赋值表达式(Assignment)，<br>这时就可以判断左值所对应类型中是否具有对=的重载方法，如果有就将该赋值表达式的右值修改为一个方法调用(MethodInvocation)表达式，<br>并将原来的赋值作为该方法调用表达式的参数，由此就能轻松地实现对=的重载</p>
-<p>【题外话】<br>我翻阅了Javac（Java编译器）的源代码，发现它其实也是支持运算符重载的，<br>不过只能在编译器内部定义重载（所以上面我说的是无法在代码层面实现运算符重载，并不是说不支持运算符重载），具体实现方式与结绳4.0相差不大</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUtils</span></span></span><br><span class="line"><span class="class">    @<span class="title">static</span></span></span><br><span class="line"><span class="class">    <span class="title">fun</span> <span class="title">toast</span>(<span class="title">context</span> : <span class="title">Context</span>, <span class="title">msg</span> : <span class="title">String</span>, <span class="title">longTimeShow</span> : <span class="title">Bool</span> </span>= <span class="keyword">false</span>)</span><br><span class="line">        Toast.makeText(context, msg, longTimeShow ? LENGTH_LONG : LENGTH_SHORT).show()</span><br><span class="line">调用时：</span><br><span class="line">MyUtils.toast(<span class="keyword">this</span>, <span class="string">&quot;信息&quot;</span>)</span><br><span class="line">MyUtils.toast(<span class="keyword">this</span>, <span class="string">&quot;信息&quot;</span>, )</span><br><span class="line">MyUtils.toast(<span class="keyword">this</span>, <span class="string">&quot;信息&quot;</span>, <span class="keyword">true</span>)</span><br></pre></td></tr></table></figure>
+<p>可以发现，第三个具有默认值的参数可以被省略，这会极大地方便代码编写，以及减少方法重载的数量。<br>我们来看结绳4.0的实现原理：</p>
+<p>首先，了解语法树的同志都知道，在进行语法树标注的时候会标注到方法调用表达式(MethodInvocation)<br>这个时候，我们先不进行参数检查，而是去填充默认参数，从索引0开始，逐一扫描调用参数，如果为空，则填充为默认参数，<br>如果调用参数不足，而方法定义的形式参数还有剩余，则继续扫描剩下的形式参数所具有的默认值，加到调用参数集的末尾，<br>填充默认参数值就此完成，接下来就是正规的检查参数流程了，具体过程不再赘述。</p>
 
       
 
@@ -290,7 +276,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://finalscave.github.io/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://finalscave.github.io/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +290,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E5%8F%98%E9%87%8F%E4%BA%A4%E6%8D%A2%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          浅谈研发结绳4.0的收获——方法参数默认值的实现
+          浅谈研发结绳4.0的收获——变量交换式的实现
         
       </div>
     </a>
   
   
-    <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8EXamarin%E5%AD%A6%E5%88%B0%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">浅谈研发结绳4.0的收获——从Xamarin学到目标平台软件自动化配置的设计方案</div>
+    <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅谈研发结绳4.0的收获——运算符重载的实现</div>
       <i class="icon-circle-right"></i>
     </a>
   
