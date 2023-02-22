@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://finalscave.github.io">
-  <title>Tag: Golang | Scave&#39;s Blog</title>
+  <title>VFPAED架构介绍 | Scave&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Scave&#39;s personal technology blog mainly records his usual learning summary, problem solving and other related contents. This blog is used as his own technical reserve to accompany his growth and progr">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Scave&#39;s Blog">
-<meta property="og:url" content="https://finalscave.github.io/tags/Golang/index.html">
+  <meta name="description" content="这篇文章主要是详解VFPAED架构， 相信很多人一听到这个词，就觉得很陌生，是的，这个架构是我花了很长的时间研究出来的,后来又经过团队的多次讨论，才最终确定这个架构。相信很多人都知道MVC、MVVM、MVP等等，这些都是业内比较著名的架构模式。为什么要架构呢？我觉得主要有2个原因。1.避免技术的复杂性所带来的软件维护困难问题2.降低软件开发的人力成本其中第一点，我们需要从以下几个方面来看：(1)项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VFPAED架构介绍">
+<meta property="og:url" content="https://finalscave.github.io/2023/02/22/VFPAED%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="Scave&#39;s Blog">
-<meta property="og:description" content="Scave&#39;s personal technology blog mainly records his usual learning summary, problem solving and other related contents. This blog is used as his own technical reserve to accompany his growth and progr">
+<meta property="og:description" content="这篇文章主要是详解VFPAED架构， 相信很多人一听到这个词，就觉得很陌生，是的，这个架构是我花了很长的时间研究出来的,后来又经过团队的多次讨论，才最终确定这个架构。相信很多人都知道MVC、MVVM、MVP等等，这些都是业内比较著名的架构模式。为什么要架构呢？我觉得主要有2个原因。1.避免技术的复杂性所带来的软件维护困难问题2.降低软件开发的人力成本其中第一点，我们需要从以下几个方面来看：(1)项">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-22T12:07:50.000Z">
+<meta property="article:modified_time" content="2023-02-22T12:29:45.567Z">
 <meta property="article:author" content="Scave">
-<meta property="article:tag" content="Scave|Blog|Linux开发|Android开发|Java开发|Web开发|C++|Python">
+<meta property="article:tag" content="心得">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Scave&#39;s Blog" type="application/atom+xml">
@@ -149,64 +151,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-VFPAED架构介绍" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" class="archive-article-date">
-  	<time datetime="2021-11-09T06:56:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/09/GoLand%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">GoLand环境配置踩坑</a>
+    <h1 class="article-title" itemprop="name">
+      VFPAED架构介绍
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2023/02/22/VFPAED%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
+  	<time datetime="2023-02-22T12:07:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章主要是详解VFPAED架构， 相信很多人一听到这个词，就觉得很陌生，是的，这个架构是我花了很长的时间研究出来的,<br>后来又经过团队的多次讨论，才最终确定这个架构。<br><br><br><br>相信很多人都知道MVC、MVVM、MVP等等，这些都是业内比较著名的架构模式。<br>为什么要架构呢？我觉得主要有2个原因。<br><br><br>1.避免技术的复杂性所带来的软件维护困难问题<br><br><br>2.降低软件开发的人力成本<br><br><br>其中第一点，我们需要从以下几个方面来看：<br><br><br>(1)项目的需求是不断变化的，新增的需求可能会增加系统复杂度，也可能破坏原有架构<br><br><br>(2)一般项目都是由团队共同完成，团队如何进行有效协作是一个值得考虑的问题<br><br><br>(3)一个完整的项目系统，一般来说会使用到多种技术、多种框架、多种工具，更会涉及多个平台，从移动端/Web前端到Web后端<br><br><br>其实第3点是更高的架构层次，不再仅仅局限于一个软件的架构，而是一个系统的整体架构，今天我们就暂时跳过第3点了，今天的正题是一个软件的架构。<br><br><br><br>对于第二点就没什么可说的，如果每次需求变更都会引起架构变更，那程序员得累死了，接下来开始谈正题！<br>我是一个.NET Web和Android的开发者，当然也做过几个Java Web项目，以及Python Web项目<br>所以今天要讲的架构不会是针对某个特定平台，而是一套通用的架构模式。<br><br><br><br>我做了七年开发，在最近四年来，我一直在研究如何架构好一个系统软件，<br>我有个朋友是做设计的，我和他讨论过生活中充满设计，当你在思考今天要吃什么的时候，你已经开始在对你的生活进行设计了，<br>每个人的设计都是独一无二的，即便做出了相同的决定，但想法是不同的，生活中的处处充满设计，这是个充满设计的世界，<br>每个人都是一个设计师，但是每个人擅长的领域也许有所不同，在这四年里，<br>我尝试过很多种架构模式，但在我们团队的某个项目中，都存在很多问题，这让我很烦恼，<br>因为那个项目足足有135万行代码，每次重构对于我们来说都是地狱般的煎熬，这让我们意识到，<br>研究出一个可在开发进行时进行变种的架构模式刻不容缓，于是我开始了不断的尝试，<br>结合我一直在学习的易理知识，以及对历史变迁的了解，在我的脑海中已经形成了一个观念：分而治之<br>于是经过不断的尝试和改进，最终确定了VFPAED，即View-Framework-Provider-Action-Event-Data<br><br><br>View: 一般指GUI，即用户界面，只负责处理用户在界面的行为和事件交互<br><br><br>Framework: 框架层，将一个软件分解为若干个大体框架<br><br><br>Provider: 功能提供器，多个功能器组合起来为每个框架提供相应功能<br><br><br>Action: 动作，是用户行为的抽象，用户的每一个操作都是执行一个动作<br><br><br>Event: 事件，调用功能或执行动作可能触发事件<br><br><br>Data: 数据，在调用功能、执行动作、触发事件的过程中少不了数据的穿插<br><br><br>那么，如何将以上几个部分组合起来，在正式开始之前，需要注意的一点是：<br>以上是VFPAED的完全架构，当然就还有很多种非完全架构变体，在后面的文章中将会详细分析，<br>并进一步分析如何根据程序规模进行非完全架构到完全架构的变种</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境配置</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://finalscave.github.io/2023/02/22/VFPAED%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2023/02/22/VFPAED%E5%AE%8C%E5%85%A8%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          VFPAED完全架构分析
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2023/02/22/%E4%B9%A6%E5%A5%91%E5%B7%A5%E7%A8%8B%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%BC%80%E5%8F%91%E7%BB%93%E6%9D%9F%E4%BA%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">书契工程平台的开发结束了</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -229,9 +353,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

@@ -1,0 +1,20 @@
+@startuml
+
+actor User as User
+boundary View as View
+control Framework as Framework
+control Provider as Provider
+control Action as Action
+control Event as Event
+control Data as Data
+
+User --> View:用户操作
+View --> Framework:导向到指定框架
+Framework --> Provider:执行指定功能
+Provider --> Action:可能执行指定动作
+Provider --> Event:可能触发事件
+Action --> Event:可能触发事件
+Provider <-- Data:长周期数据引用
+Action <-- Data:长周期数据引用
+Event <-- Data:长周期数据引用
+@enduml

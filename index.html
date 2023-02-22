@@ -151,6 +151,228 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-VFPAED完全架构分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/22/VFPAED%E5%AE%8C%E5%85%A8%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/">VFPAED完全架构分析</a>
+    </h1>
+  
+
+        
+        <a href="/2023/02/22/VFPAED%E5%AE%8C%E5%85%A8%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2023-02-22T12:34:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>VFPAED完全架构由6个部分组成：<br><img src="/2023/02/22/VFPAED%E5%AE%8C%E5%85%A8%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/vfpaed.png"><br><br><br><br>(1)View: 只涉及用户界面以及输入事件交互，比如用户点击按钮，<br>我们需要从指定的框架(Framework)中取得相应部分的功能提供器(Provider)，<br>然后调用Provider中的指定方法来实现相应功能，数据从方法参数进行传递，<br>Provider的功能，可能是通过执行某个动作(Action)来实现，也可能就是一些步骤<br><br><br><br>(2)Framework: 这是整个架构的核心，Framework需要负责存储Provider/Action/Data/Event，<br>软件被拆解为了若干个Framework，每个Framework都有自己的Provider/Action/Data/Event，<br>分工明确，比如要存取某个Data，则通过对应的Framework进行存取，<br>不过此处需要注意的事是Data应当是极少的，是一些生命周期同软件周期相同的数据，比如Android上可以存ApplicationContext<br>其它的数据则通过参数传递，要保证不被任何Provider/Action/Event所持有，<br>建议每个Framework都使用单例模式，因为Framework的生命周期与软件周期相同，<br>Framework中的每个Provider/Action/Data/Event应当都是可以被替换的，可以使用键值对的方式进行存储，方便替换<br><br><br><br>(3)Provider: 负责某个Framework中某个部分功能的提供，便于View层进行操作<br><br><br><br>(4)Action: 代表一个动作，比如检测更新是一个动作，而这个动作被注册到了相应的Framework，在任何时候任何地方都能随意执行这个动作，<br>只需要通过对应的Framework实例执行即可<br><br><br><br>(5)Event: 代表一个事件，在Provider方法的执行过程中，或者Action的执行过程中，可能触发一些事件，<br>同一个事件ID应当是对应多个事件的，这里建议每个事件ID都对应一个EventHandler，即事件处理器，<br>而一个事件ID对应一个事件处理器，事件处理器可以增加/移除事件，在触发事件的时候，即可同时触发多个事件对象<br><br><br><br>(6)Data: 每个Framework所包含的长周期数据，数据保存到Framework方便其他层随取随用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/02/22/VFPAED%E5%AE%8C%E5%85%A8%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-VFPAED架构介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/22/VFPAED%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/">VFPAED架构介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2023/02/22/VFPAED%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
+  	<time datetime="2023-02-22T12:07:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章主要是详解VFPAED架构， 相信很多人一听到这个词，就觉得很陌生，是的，这个架构是我花了很长的时间研究出来的,<br>后来又经过团队的多次讨论，才最终确定这个架构。<br><br><br><br>相信很多人都知道MVC、MVVM、MVP等等，这些都是业内比较著名的架构模式。<br>为什么要架构呢？我觉得主要有2个原因。<br><br><br>1.避免技术的复杂性所带来的软件维护困难问题<br><br><br>2.降低软件开发的人力成本<br><br><br>其中第一点，我们需要从以下几个方面来看：<br><br><br>(1)项目的需求是不断变化的，新增的需求可能会增加系统复杂度，也可能破坏原有架构<br><br><br>(2)一般项目都是由团队共同完成，团队如何进行有效协作是一个值得考虑的问题<br><br><br>(3)一个完整的项目系统，一般来说会使用到多种技术、多种框架、多种工具，更会涉及多个平台，从移动端/Web前端到Web后端<br><br><br>其实第3点是更高的架构层次，不再仅仅局限于一个软件的架构，而是一个系统的整体架构，今天我们就暂时跳过第3点了，今天的正题是一个软件的架构。<br><br><br><br>对于第二点就没什么可说的，如果每次需求变更都会引起架构变更，那程序员得累死了，接下来开始谈正题！<br>我是一个.NET Web和Android的开发者，当然也做过几个Java Web项目，以及Python Web项目<br>所以今天要讲的架构不会是针对某个特定平台，而是一套通用的架构模式。<br><br><br><br>我做了七年开发，在最近四年来，我一直在研究如何架构好一个系统软件，<br>我有个朋友是做设计的，我和他讨论过生活中充满设计，当你在思考今天要吃什么的时候，你已经开始在对你的生活进行设计了，<br>每个人的设计都是独一无二的，即便做出了相同的决定，但想法是不同的，生活中的处处充满设计，这是个充满设计的世界，<br>每个人都是一个设计师，但是每个人擅长的领域也许有所不同，在这四年里，<br>我尝试过很多种架构模式，但在我们团队的某个项目中，都存在很多问题，这让我很烦恼，<br>因为那个项目足足有135万行代码，每次重构对于我们来说都是地狱般的煎熬，这让我们意识到，<br>研究出一个可在开发进行时进行变种的架构模式刻不容缓，于是我开始了不断的尝试，<br>结合我一直在学习的易理知识，以及对历史变迁的了解，在我的脑海中已经形成了一个观念：分而治之<br>于是经过不断的尝试和改进，最终确定了VFPAED，即View-Framework-Provider-Action-Event-Data<br><br><br>View: 一般指GUI，即用户界面，只负责处理用户在界面的行为和事件交互<br><br><br>Framework: 框架层，将一个软件分解为若干个大体框架<br><br><br>Provider: 功能提供器，多个功能器组合起来为每个框架提供相应功能<br><br><br>Action: 动作，是用户行为的抽象，用户的每一个操作都是执行一个动作<br><br><br>Event: 事件，调用功能或执行动作可能触发事件<br><br><br>Data: 数据，在调用功能、执行动作、触发事件的过程中少不了数据的穿插<br><br><br>那么，如何将以上几个部分组合起来，在正式开始之前，需要注意的一点是：<br>以上是VFPAED的完全架构，当然就还有很多种非完全架构变体，在后面的文章中将会详细分析，<br>并进一步分析如何根据程序规模进行非完全架构到完全架构的变种</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/02/22/VFPAED%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-书契工程平台的开发结束了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/22/%E4%B9%A6%E5%A5%91%E5%B7%A5%E7%A8%8B%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%BC%80%E5%8F%91%E7%BB%93%E6%9D%9F%E4%BA%86/">书契工程平台的开发结束了</a>
+    </h1>
+  
+
+        
+        <a href="/2023/02/22/%E4%B9%A6%E5%A5%91%E5%B7%A5%E7%A8%8B%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%BC%80%E5%8F%91%E7%BB%93%E6%9D%9F%E4%BA%86/" class="archive-article-date">
+  	<time datetime="2023-02-22T11:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>书契是由我们团队打造的新一代面向多领域、一体化的开放工程平台，<br>其支持以插件的形式向书契平台内集成多领域、多类型工程的管理和开发功能。<br>有人说“你们都搞了结绳了，为什么要搞书契”，这其中有很多原因。<br><br><br><br>我们团队坚信，无论哪个时刻，我们的作品都是有缺陷的，只有不断地去修复、去研究新的解决方案才能有更好的作品。<br>结绳虽然也支持插件扩展，但局限性是比较大的，并且只要插件运行出错，整个程序就崩溃了，这是很不友好的；<br>不过最主要的原因还是因为需求的增加，维护越来越困难了(135万行代码重构起来就是地狱)，而我还没有研究出一种在开发进行时进行变种的架构模式，<br>于是我花了很大段时间终于研究出了我理想中的架构，当然也是经过了很多个版本的变化才最终得出了VFPAED架构(也可以叫VX架构)。<br><br><br><br>这一次我们团队增加到了6个人，感谢凌肆柒和double的加入，为我们团队带来了更强的活力，我们的工作效率自然也提高了不少，<br>所以这次书契从开始有想法到实现仅仅花了6个月，当然很多代码是基于结绳修改而来。<br>这已经是我们团队在一起协作的第四年了，在这里我只想对我们说继续加油，热情不熄不灭！<br><br><br><br>在开发过程中，我总结出了能在开发进行时进行变种的架构模式——VFPAED(VX)架构，下面的文章我将详细介绍这种架构</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/02/22/%E4%B9%A6%E5%A5%91%E5%B7%A5%E7%A8%8B%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%BC%80%E5%8F%91%E7%BB%93%E6%9D%9F%E4%BA%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-浅谈研发结绳4-0的收获——百万行代码级别的项目管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -198,82 +420,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34-0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E7%99%BE%E4%B8%87%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%88%AB%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-浅谈研发结绳4.0的收获——从Spring AOP学到的变量自动初始化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/">浅谈研发结绳4.0的收获——从Spring AOP学到的变量自动初始化</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2022-09-16T16:27:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在结绳3.0及其旧版本中，需要用户自己去创建变量是不友好的，很多新手可能也无法理解，我就在想，能不能设计出一种方案实现自动初始化变量。</p>
-        
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E4%BB%8ESpring%20AOP%E5%AD%A6%E5%88%B0%E7%9A%84%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/">展开全文 >></a>
         </p>
       
 
@@ -759,158 +905,6 @@
 
 
   
-    <article id="post-浅谈研发结绳4.0的收获——感慨" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/">浅谈研发结绳4.0的收获——感慨</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/" class="archive-article-date">
-  	<time datetime="2022-09-14T06:40:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>经历了两年的苦战，我们团队终于完成了结绳4.0的研发，目前已经处于公测阶段，预计国庆节就可以发布正式版<br>此时，心中感慨万千，于是打算写下这么多年来我的一些收获与大家分享</p>
-        
-          <a class="article-more-a" href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">心得</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/14/%E6%B5%85%E8%B0%88%E7%A0%94%E5%8F%91%E7%BB%93%E7%BB%B34.0%E7%9A%84%E6%94%B6%E8%8E%B7%E2%80%94%E2%80%94%E6%84%9F%E6%85%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-关于Java使用Thread的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/12/%E5%85%B3%E4%BA%8EJava%E4%BD%BF%E7%94%A8Thread%E7%9A%84%E9%97%AE%E9%A2%98/">关于Java使用Thread的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/12/%E5%85%B3%E4%BA%8EJava%E4%BD%BF%E7%94%A8Thread%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-11-12T08:30:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天有个群友在群里问，Java的Thread是不是执行完任务后就销毁了，我回答了“是”，Java的Thread在执行完任务后，一般情况下，确实会自动销毁，但是也要避免意外情况的出现，意外情况很多，这里就不举例了，我们直接来看下面的两段代码：</p>
-        
-          <a class="article-more-a" href="/2021/11/12/%E5%85%B3%E4%BA%8EJava%E4%BD%BF%E7%94%A8Thread%E7%9A%84%E9%97%AE%E9%A2%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/12/%E5%85%B3%E4%BA%8EJava%E4%BD%BF%E7%94%A8Thread%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -925,7 +919,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Scave
+    		&copy; 2023 Scave
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
