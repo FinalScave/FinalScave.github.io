@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img" aria-labelledby="title desc">
+  <title id="title">Android system mark 被当成 composition 的事故对比</title>
+  <desc id="desc">旧模型把 setComposingRegion 当成 composition，导致 commitText 替换整词；新模型把它作为 system mark，commitText 只在光标处插入并清除标记。</desc>
+  <defs>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#dc2626"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif; fill: #202124; }
+      .title { font-size: 25px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #5f6368; }
+      .panel-title { font-size: 21px; font-weight: 700; }
+      .box-title { font-size: 15.5px; font-weight: 700; }
+      .text { font-size: 14px; fill: #4b5563; }
+      .small { font-size: 12.5px; fill: #4b5563; }
+      .note { font-size: 13.5px; fill: #4b5563; }
+      .mono { font-family: "Cascadia Mono", "Consolas", monospace; font-size: 14px; }
+      .mono-result { font-family: "Cascadia Mono", "Consolas", monospace; font-size: 16px; font-weight: 700; }
+      .red-line { stroke: #dc2626; stroke-width: 3; fill: none; marker-end: url(#arrow-red); }
+      .blue-line { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow-blue); }
+    </style>
+  </defs>
+  <rect width="900" height="700" fill="#fbfbf8"/>
+  <text class="title" x="450" y="48" text-anchor="middle">Android system mark 被当成 composition 后发生了什么</text>
+  <text class="subtitle" x="450" y="76" text-anchor="middle">同样是 setComposingRegion + commitText，旧模型替换整词，新模型只在光标处插入</text>
+
+  <rect x="55" y="118" width="370" height="500" rx="12" fill="#fff7f7" stroke="#f2a3a3" stroke-width="2"/>
+  <text class="panel-title" x="95" y="154">旧模型</text>
+  <text class="text" x="95" y="184">把 system mark 误当成 preedit</text>
+
+  <rect x="95" y="220" width="290" height="56" rx="8" fill="#ffffff" stroke="#d1d5db"/>
+  <text class="box-title" x="125" y="243">文档</text>
+  <text class="mono" x="240" y="257" text-anchor="middle">hello| world</text>
+
+  <path class="red-line" d="M240 276 L240 307"/>
+  <rect x="95" y="307" width="290" height="66" rx="8" fill="#fff3df" stroke="#d79536"/>
+  <text class="box-title" x="240" y="332" text-anchor="middle">setComposingRegion(0, 5)</text>
+  <text class="small" x="240" y="356" text-anchor="middle">composition = hello</text>
+
+  <path class="red-line" d="M240 373 L240 402"/>
+  <rect x="95" y="402" width="290" height="56" rx="8" fill="#fff3df" stroke="#d79536"/>
+  <text class="box-title" x="165" y="426">commitText</text>
+  <text class="mono" x="300" y="441" text-anchor="middle">"X"</text>
+
+  <path class="red-line" d="M240 458 L240 489"/>
+  <rect x="95" y="489" width="290" height="62" rx="8" fill="#fee2e2" stroke="#dc2626"/>
+  <text class="box-title" x="125" y="516">结果</text>
+  <text class="mono-result" x="260" y="533" text-anchor="middle">X world</text>
+
+  <rect x="475" y="118" width="370" height="500" rx="12" fill="#f2f8ff" stroke="#8db7e8" stroke-width="2"/>
+  <text class="panel-title" x="515" y="154">新模型</text>
+  <text class="text" x="515" y="184">先保存角色，再决定是否替换</text>
+
+  <rect x="515" y="220" width="290" height="56" rx="8" fill="#ffffff" stroke="#d1d5db"/>
+  <text class="box-title" x="545" y="243">文档</text>
+  <text class="mono" x="660" y="257" text-anchor="middle">hello| world</text>
+
+  <path class="blue-line" d="M660 276 L660 307"/>
+  <rect x="515" y="307" width="290" height="66" rx="8" fill="#fff3df" stroke="#d79536"/>
+  <text class="box-title" x="660" y="332" text-anchor="middle">setComposingRegion(0, 5)</text>
+  <text class="small" x="660" y="356" text-anchor="middle">SYSTEM_MARK = hello</text>
+
+  <path class="blue-line" d="M660 373 L660 402"/>
+  <rect x="515" y="402" width="290" height="56" rx="8" fill="#eaf4ff" stroke="#6aa0d8"/>
+  <text class="box-title" x="585" y="426">commitText</text>
+  <text class="mono" x="720" y="441" text-anchor="middle">"X"</text>
+
+  <path class="blue-line" d="M660 458 L660 489"/>
+  <rect x="515" y="489" width="290" height="62" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <text class="box-title" x="545" y="516">结果</text>
+  <text class="mono-result" x="690" y="533" text-anchor="middle">helloX world</text>
+
+  <text class="note" x="450" y="665" text-anchor="middle">关键点：system mark 可以同步给平台，但不能自动拥有 preedit 的替换语义。</text>
+</svg>

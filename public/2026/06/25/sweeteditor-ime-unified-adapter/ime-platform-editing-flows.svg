@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980" role="img" aria-labelledby="title desc">
+  <title id="title">各平台 IME 真实编辑过程对照</title>
+  <desc id="desc">Android、Apple、Swing、WinForms、OHOS、Flutter 在真实编辑发生时分别更适合走 command 或 text_update。</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#5f6368"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif; fill: #202124; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #5f6368; }
+      .platform { font-size: 22px; font-weight: 700; }
+      .box-title { font-size: 18px; font-weight: 700; }
+      .text { font-size: 15px; fill: #4b5563; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .line-blue { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow-blue); }
+      .line-gray { stroke: #5f6368; stroke-width: 2; fill: none; marker-end: url(#arrow-gray); }
+    </style>
+  </defs>
+  <rect width="1500" height="980" fill="#fbfbf8"/>
+  <text class="title" x="750" y="62" text-anchor="middle">各平台 IME 真实编辑过程对照</text>
+  <text class="subtitle" x="750" y="98" text-anchor="middle">有的平台给出明确操作，有的平台只给出编辑后的文本状态，强行统一 API 就会丢语义</text>
+
+  <line x1="90" y1="135" x2="1410" y2="135" stroke="#d6d6d6" stroke-width="1"/>
+  <text class="small" x="260" y="125" text-anchor="middle">平台原生回调</text>
+  <text class="small" x="560" y="125" text-anchor="middle">真实编辑发生位置</text>
+  <text class="small" x="860" y="125" text-anchor="middle">适配层判断</text>
+  <text class="small" x="1160" y="125" text-anchor="middle">Core 入口</text>
+  <text class="small" x="1365" y="125" text-anchor="middle">同步结果</text>
+
+  <g transform="translate(0,155)">
+    <rect x="70" y="0" width="1360" height="112" rx="10" fill="#ffffff" stroke="#d9d9d9"/>
+    <text class="platform" x="145" y="66" text-anchor="middle">Android</text>
+    <rect x="220" y="24" width="230" height="64" rx="8" fill="#f3f4f6" stroke="#b6b6b6"/>
+    <text class="box-title" x="335" y="50" text-anchor="middle">InputConnection</text>
+    <text class="small" x="335" y="73" text-anchor="middle">commit / composing / delete</text>
+    <rect x="510" y="24" width="230" height="64" rx="8" fill="#e8f2ff" stroke="#6aa0d8"/>
+    <text class="box-title" x="625" y="50" text-anchor="middle">Editable 先变化</text>
+    <text class="small" x="625" y="73" text-anchor="middle">系统 span 与文本窗口</text>
+    <rect x="800" y="24" width="230" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="915" y="50" text-anchor="middle">区分 preedit / mark</text>
+    <text class="small" x="915" y="73" text-anchor="middle">region 多数是 system mark</text>
+    <rect x="1090" y="24" width="180" height="64" rx="8" fill="#eaf4ff" stroke="#6aa0d8"/>
+    <text class="box-title" x="1180" y="50" text-anchor="middle">text_update</text>
+    <text class="small" x="1180" y="73" text-anchor="middle">delete 走 command</text>
+    <rect x="1320" y="24" width="80" height="64" rx="8" fill="#f2efff" stroke="#8f7ce8"/>
+    <text class="small" x="1360" y="48" text-anchor="middle">sync</text>
+    <text class="small" x="1360" y="70" text-anchor="middle">mark</text>
+    <path class="line-blue" d="M450 56 L510 56"/>
+    <path class="line-blue" d="M740 56 L800 56"/>
+    <path class="line-blue" d="M1030 56 L1090 56"/>
+    <path class="line-gray" d="M1270 56 L1320 56"/>
+  </g>
+
+  <g transform="translate(0,285)">
+    <rect x="70" y="0" width="1360" height="112" rx="10" fill="#ffffff" stroke="#d9d9d9"/>
+    <text class="platform" x="145" y="66" text-anchor="middle">Apple</text>
+    <rect x="220" y="24" width="230" height="64" rx="8" fill="#f3f4f6" stroke="#b6b6b6"/>
+    <text class="box-title" x="335" y="50" text-anchor="middle">setMarkedText</text>
+    <text class="small" x="335" y="73" text-anchor="middle">insertText / unmarkText</text>
+    <rect x="510" y="24" width="230" height="64" rx="8" fill="#eef8ef" stroke="#5da768"/>
+    <text class="box-title" x="625" y="50" text-anchor="middle">marked text 生命周期</text>
+    <text class="small" x="625" y="73" text-anchor="middle">本地 selection 跟随 marked range</text>
+    <rect x="800" y="24" width="230" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="915" y="50" text-anchor="middle">语义足够明确</text>
+    <text class="small" x="915" y="73" text-anchor="middle">preedit / commit / finish</text>
+    <rect x="1090" y="24" width="180" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="1180" y="50" text-anchor="middle">command</text>
+    <text class="small" x="1180" y="73" text-anchor="middle">SET_PREEDIT_TEXT</text>
+    <rect x="1320" y="24" width="80" height="64" rx="8" fill="#f2efff" stroke="#8f7ce8"/>
+    <text class="small" x="1360" y="48" text-anchor="middle">sync</text>
+    <text class="small" x="1360" y="70" text-anchor="middle">range</text>
+    <path class="line-blue" d="M450 56 L510 56"/>
+    <path class="line-blue" d="M740 56 L800 56"/>
+    <path class="line-blue" d="M1030 56 L1090 56"/>
+    <path class="line-gray" d="M1270 56 L1320 56"/>
+  </g>
+
+  <g transform="translate(0,415)">
+    <rect x="70" y="0" width="1360" height="112" rx="10" fill="#ffffff" stroke="#d9d9d9"/>
+    <text class="platform" x="145" y="66" text-anchor="middle">Swing</text>
+    <rect x="220" y="24" width="230" height="64" rx="8" fill="#f3f4f6" stroke="#b6b6b6"/>
+    <text class="box-title" x="335" y="50" text-anchor="middle">InputMethodEvent</text>
+    <text class="small" x="335" y="73" text-anchor="middle">committedCharacterCount</text>
+    <rect x="510" y="24" width="230" height="64" rx="8" fill="#eef8ef" stroke="#5da768"/>
+    <text class="box-title" x="625" y="50" text-anchor="middle">同一事件拆两段</text>
+    <text class="small" x="625" y="73" text-anchor="middle">前段提交，后段组合</text>
+    <rect x="800" y="24" width="230" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="915" y="50" text-anchor="middle">拆分后语义明确</text>
+    <text class="small" x="915" y="73" text-anchor="middle">commit + preedit</text>
+    <rect x="1090" y="24" width="180" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="1180" y="50" text-anchor="middle">command</text>
+    <text class="small" x="1180" y="73" text-anchor="middle">COMMIT / PREEDIT</text>
+    <rect x="1320" y="24" width="80" height="64" rx="8" fill="#f2efff" stroke="#8f7ce8"/>
+    <text class="small" x="1360" y="48" text-anchor="middle">sync</text>
+    <text class="small" x="1360" y="70" text-anchor="middle">state</text>
+    <path class="line-blue" d="M450 56 L510 56"/>
+    <path class="line-blue" d="M740 56 L800 56"/>
+    <path class="line-blue" d="M1030 56 L1090 56"/>
+    <path class="line-gray" d="M1270 56 L1320 56"/>
+  </g>
+
+  <g transform="translate(0,545)">
+    <rect x="70" y="0" width="1360" height="112" rx="10" fill="#ffffff" stroke="#d9d9d9"/>
+    <text class="platform" x="145" y="66" text-anchor="middle">WinForms</text>
+    <rect x="220" y="24" width="230" height="64" rx="8" fill="#f3f4f6" stroke="#b6b6b6"/>
+    <text class="box-title" x="335" y="50" text-anchor="middle">WM_IME_COMPOSITION</text>
+    <text class="small" x="335" y="73" text-anchor="middle">GCS_COMPSTR / RESULTSTR</text>
+    <rect x="510" y="24" width="230" height="64" rx="8" fill="#eef8ef" stroke="#5da768"/>
+    <text class="box-title" x="625" y="50" text-anchor="middle">组合串或结果串</text>
+    <text class="small" x="625" y="73" text-anchor="middle">KeyPress 路径需要抑制</text>
+    <rect x="800" y="24" width="230" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="915" y="50" text-anchor="middle">避免重复写文档</text>
+    <text class="small" x="915" y="73" text-anchor="middle">IME 消息优先</text>
+    <rect x="1090" y="24" width="180" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="1180" y="50" text-anchor="middle">command</text>
+    <text class="small" x="1180" y="73" text-anchor="middle">SET / COMMIT</text>
+    <rect x="1320" y="24" width="80" height="64" rx="8" fill="#f2efff" stroke="#8f7ce8"/>
+    <text class="small" x="1360" y="48" text-anchor="middle">sync</text>
+    <text class="small" x="1360" y="70" text-anchor="middle">state</text>
+    <path class="line-blue" d="M450 56 L510 56"/>
+    <path class="line-blue" d="M740 56 L800 56"/>
+    <path class="line-blue" d="M1030 56 L1090 56"/>
+    <path class="line-gray" d="M1270 56 L1320 56"/>
+  </g>
+
+  <g transform="translate(0,675)">
+    <rect x="70" y="0" width="1360" height="112" rx="10" fill="#ffffff" stroke="#d9d9d9"/>
+    <text class="platform" x="145" y="66" text-anchor="middle">OHOS</text>
+    <rect x="220" y="24" width="230" height="64" rx="8" fill="#f3f4f6" stroke="#b6b6b6"/>
+    <text class="box-title" x="335" y="50" text-anchor="middle">preview / insert / delete</text>
+    <text class="small" x="335" y="73" text-anchor="middle">selection callback</text>
+    <rect x="510" y="24" width="230" height="64" rx="8" fill="#e8f2ff" stroke="#6aa0d8"/>
+    <text class="box-title" x="625" y="50" text-anchor="middle">回调范围不稳定</text>
+    <text class="small" x="625" y="73" text-anchor="middle">可能是文档或窗口 offset</text>
+    <rect x="800" y="24" width="230" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="915" y="50" text-anchor="middle">先做坐标归一化</text>
+    <text class="small" x="915" y="73" text-anchor="middle">再表达操作语义</text>
+    <rect x="1090" y="24" width="180" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="1180" y="50" text-anchor="middle">command</text>
+    <text class="small" x="1180" y="73" text-anchor="middle">preview / delete</text>
+    <rect x="1320" y="24" width="80" height="64" rx="8" fill="#f2efff" stroke="#8f7ce8"/>
+    <text class="small" x="1360" y="48" text-anchor="middle">sync</text>
+    <text class="small" x="1360" y="70" text-anchor="middle">ctx</text>
+    <path class="line-blue" d="M450 56 L510 56"/>
+    <path class="line-blue" d="M740 56 L800 56"/>
+    <path class="line-blue" d="M1030 56 L1090 56"/>
+    <path class="line-gray" d="M1270 56 L1320 56"/>
+  </g>
+
+  <g transform="translate(0,805)">
+    <rect x="70" y="0" width="1360" height="112" rx="10" fill="#ffffff" stroke="#d9d9d9"/>
+    <text class="platform" x="145" y="66" text-anchor="middle">Flutter</text>
+    <rect x="220" y="24" width="230" height="64" rx="8" fill="#f3f4f6" stroke="#b6b6b6"/>
+    <text class="box-title" x="335" y="50" text-anchor="middle">TextEditingValue</text>
+    <text class="small" x="335" y="73" text-anchor="middle">TextEditingDelta</text>
+    <rect x="510" y="24" width="230" height="64" rx="8" fill="#e8f2ff" stroke="#6aa0d8"/>
+    <text class="box-title" x="625" y="50" text-anchor="middle">编辑后状态</text>
+    <text class="small" x="625" y="73" text-anchor="middle">selection + composing</text>
+    <rect x="800" y="24" width="230" height="64" rx="8" fill="#fff3df" stroke="#d79536"/>
+    <text class="box-title" x="915" y="50" text-anchor="middle">按平台解释 composing</text>
+    <text class="small" x="915" y="73" text-anchor="middle">Android mark / Windows preedit</text>
+    <rect x="1090" y="24" width="180" height="64" rx="8" fill="#eaf4ff" stroke="#6aa0d8"/>
+    <text class="box-title" x="1180" y="50" text-anchor="middle">text_update</text>
+    <text class="small" x="1180" y="73" text-anchor="middle">snapshot / patch</text>
+    <rect x="1320" y="24" width="80" height="64" rx="8" fill="#f2efff" stroke="#8f7ce8"/>
+    <text class="small" x="1360" y="48" text-anchor="middle">sync</text>
+    <text class="small" x="1360" y="70" text-anchor="middle">value</text>
+    <path class="line-blue" d="M450 56 L510 56"/>
+    <path class="line-blue" d="M740 56 L800 56"/>
+    <path class="line-blue" d="M1030 56 L1090 56"/>
+    <path class="line-gray" d="M1270 56 L1320 56"/>
+  </g>
+</svg>

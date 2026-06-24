@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">preedit、system mark 和 text window 的边界</title>
+  <desc id="desc">IME 文本窗口中，preedit 表示真实预编辑文本，system mark 表示候选或纠错等系统标记范围。</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#5f6368"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif; fill: #202124; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #5f6368; }
+      .box-title { font-size: 22px; font-weight: 700; }
+      .text { font-size: 16px; fill: #4b5563; }
+      .small { font-size: 14px; fill: #4b5563; }
+      .line-blue { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow-blue); }
+      .line-gray { stroke: #5f6368; stroke-width: 2; fill: none; marker-end: url(#arrow-gray); }
+    </style>
+  </defs>
+  <rect width="1400" height="760" fill="#fbfbf8"/>
+  <text class="title" x="700" y="64" text-anchor="middle">preedit / system mark / text window 的边界</text>
+  <text class="subtitle" x="700" y="98" text-anchor="middle">统一适配不是消灭平台差异，而是把不同范围的角色讲清楚</text>
+
+  <rect x="105" y="165" width="1190" height="360" rx="8" fill="#ffffff" stroke="#b7b7b7" stroke-width="2"/>
+  <text class="box-title" x="150" y="212">Document</text>
+
+  <rect x="260" y="265" width="880" height="160" rx="8" fill="#e8f2ff" stroke="#6aa0d8" stroke-width="3"/>
+  <text class="text" x="700" y="300" text-anchor="middle">ImeInputContext = document_start_offset + text window + context_id / revision</text>
+  <line x1="330" y1="330" x2="330" y2="395" stroke="#cfd8e3" stroke-width="2"/>
+  <line x1="440" y1="330" x2="440" y2="395" stroke="#cfd8e3" stroke-width="2"/>
+  <line x1="575" y1="330" x2="575" y2="395" stroke="#cfd8e3" stroke-width="2"/>
+  <line x1="700" y1="330" x2="700" y2="395" stroke="#cfd8e3" stroke-width="2"/>
+  <line x1="845" y1="330" x2="845" y2="395" stroke="#cfd8e3" stroke-width="2"/>
+  <line x1="980" y1="330" x2="980" y2="395" stroke="#cfd8e3" stroke-width="2"/>
+  <line x1="1080" y1="330" x2="1080" y2="395" stroke="#cfd8e3" stroke-width="2"/>
+
+  <text class="text" x="385" y="370" text-anchor="middle">前文</text>
+  <text class="text" x="640" y="370" text-anchor="middle">光标</text>
+  <text class="text" x="915" y="370" text-anchor="middle">后文</text>
+
+  <rect x="430" y="310" width="175" height="88" rx="8" fill="#fff3df" stroke="#d79536" stroke-width="2"/>
+  <text class="box-title" x="518" y="340" text-anchor="middle">SYSTEM_MARK</text>
+  <text class="small" x="518" y="364" text-anchor="middle">候选 / 纠错</text>
+  <text class="small" x="518" y="386" text-anchor="middle">当前词高亮</text>
+
+  <rect x="710" y="310" width="190" height="88" rx="8" fill="#eef8ef" stroke="#5da768" stroke-width="2"/>
+  <text class="box-title" x="805" y="340" text-anchor="middle">PREEDIT</text>
+  <text class="small" x="805" y="364" text-anchor="middle">真实预编辑文本</text>
+  <text class="small" x="805" y="386" text-anchor="middle">允许替换更新</text>
+
+  <text class="text" x="440" y="555" text-anchor="middle">SYSTEM_MARK 不自动变成 composition</text>
+  <text class="text" x="805" y="555" text-anchor="middle">PREEDIT 才按预编辑生命周期处理</text>
+
+  <rect x="150" y="610" width="280" height="100" rx="8" fill="#fff3df" stroke="#d79536" stroke-width="2"/>
+  <text class="box-title" x="290" y="645" text-anchor="middle">command</text>
+  <text class="text" x="290" y="675" text-anchor="middle">平台给出明确操作语义</text>
+  <text class="small" x="290" y="697" text-anchor="middle">commitText / delete / replace</text>
+
+  <rect x="560" y="610" width="280" height="100" rx="8" fill="#eaf4ff" stroke="#6aa0d8" stroke-width="2"/>
+  <text class="box-title" x="700" y="645" text-anchor="middle">text_update</text>
+  <text class="text" x="700" y="675" text-anchor="middle">平台只给出文本窗口结果</text>
+  <text class="small" x="700" y="697" text-anchor="middle">snapshot / patch 交给 core</text>
+
+  <rect x="970" y="610" width="280" height="100" rx="8" fill="#eef8ef" stroke="#5da768" stroke-width="2"/>
+  <text class="box-title" x="1110" y="645" text-anchor="middle">core decision</text>
+  <text class="text" x="1110" y="675" text-anchor="middle">用 role 和 context</text>
+  <text class="small" x="1110" y="697" text-anchor="middle">还原真实文档修改</text>
+
+  <path class="line-gray" d="M290 610 L500 398"/>
+  <path class="line-gray" d="M700 610 L805 398"/>
+  <path class="line-blue" d="M840 660 L970 660"/>
+</svg>

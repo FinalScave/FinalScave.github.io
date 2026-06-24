@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor IME 统一输入协议</title>
+  <desc id="desc">平台 IME 输入经过适配层后，按语义拆分为 command 和 text_update，再由核心返回同步快照。</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#5f6368"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif; fill: #202124; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #5f6368; }
+      .box-title { font-size: 22px; font-weight: 700; }
+      .text { font-size: 16px; fill: #4b5563; }
+      .small { font-size: 14px; fill: #4b5563; }
+      .line-blue { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow-blue); }
+      .line-gray { stroke: #5f6368; stroke-width: 2; fill: none; marker-end: url(#arrow-gray); }
+    </style>
+  </defs>
+  <rect width="1400" height="760" fill="#fbfbf8"/>
+  <text class="title" x="700" y="64" text-anchor="middle">SweetEditor IME 统一输入协议</text>
+  <text class="subtitle" x="700" y="98" text-anchor="middle">平台适配层只回答一个问题：这是明确命令，还是文本窗口变化</text>
+
+  <g>
+    <rect x="70" y="170" width="300" height="72" rx="8" fill="#f3f4f6" stroke="#b6b6b6" stroke-width="2"/>
+    <text class="box-title" x="220" y="200" text-anchor="middle">Android</text>
+    <text class="small" x="220" y="224" text-anchor="middle">InputConnection / Editable</text>
+
+    <rect x="70" y="265" width="300" height="72" rx="8" fill="#f3f4f6" stroke="#b6b6b6" stroke-width="2"/>
+    <text class="box-title" x="220" y="295" text-anchor="middle">Apple</text>
+    <text class="small" x="220" y="319" text-anchor="middle">UITextInput / NSTextInputClient</text>
+
+    <rect x="70" y="360" width="300" height="72" rx="8" fill="#f3f4f6" stroke="#b6b6b6" stroke-width="2"/>
+    <text class="box-title" x="220" y="390" text-anchor="middle">Flutter</text>
+    <text class="small" x="220" y="414" text-anchor="middle">TextEditingValue / Delta</text>
+
+    <rect x="70" y="455" width="300" height="72" rx="8" fill="#f3f4f6" stroke="#b6b6b6" stroke-width="2"/>
+    <text class="box-title" x="220" y="485" text-anchor="middle">Desktop / OHOS</text>
+    <text class="small" x="220" y="509" text-anchor="middle">InputMethodEvent / IMM / preview</text>
+  </g>
+
+  <rect x="505" y="290" width="285" height="130" rx="8" fill="#eaf4ff" stroke="#6aa0d8" stroke-width="2"/>
+  <text class="box-title" x="647" y="330" text-anchor="middle">Platform Adapter</text>
+  <text class="text" x="647" y="362" text-anchor="middle">保留平台事实</text>
+  <text class="text" x="647" y="388" text-anchor="middle">不在平台层猜文档语义</text>
+
+  <path class="line-gray" d="M370 206 L505 355"/>
+  <path class="line-gray" d="M370 301 L505 355"/>
+  <path class="line-gray" d="M370 396 L505 355"/>
+  <path class="line-gray" d="M370 491 L505 355"/>
+
+  <rect x="920" y="205" width="300" height="118" rx="8" fill="#fff3df" stroke="#d79536" stroke-width="2"/>
+  <text class="box-title" x="1070" y="244" text-anchor="middle">ImeCommandMessage</text>
+  <text class="text" x="1070" y="276" text-anchor="middle">有明确操作意图</text>
+  <text class="small" x="1070" y="302" text-anchor="middle">preedit / commit / delete / replace</text>
+
+  <rect x="920" y="410" width="300" height="118" rx="8" fill="#fff3df" stroke="#d79536" stroke-width="2"/>
+  <text class="box-title" x="1070" y="449" text-anchor="middle">ImeTextUpdateMessage</text>
+  <text class="text" x="1070" y="481" text-anchor="middle">只有文本窗口结果</text>
+  <text class="small" x="1070" y="507" text-anchor="middle">snapshot / patch / text window</text>
+
+  <path class="line-blue" d="M790 355 L920 264"/>
+  <path class="line-blue" d="M790 355 L920 469"/>
+
+  <rect x="1270" y="310" width="110" height="130" rx="8" fill="#eef8ef" stroke="#5da768" stroke-width="2"/>
+  <text class="box-title" x="1325" y="350" text-anchor="middle">Core</text>
+  <text class="small" x="1325" y="377" text-anchor="middle">Composition</text>
+  <text class="small" x="1325" y="400" text-anchor="middle">Controller</text>
+  <text class="small" x="1325" y="423" text-anchor="middle">context</text>
+
+  <path class="line-blue" d="M1220 264 L1270 355"/>
+  <path class="line-blue" d="M1220 469 L1270 395"/>
+
+  <rect x="845" y="600" width="365" height="105" rx="8" fill="#f2efff" stroke="#8f7ce8" stroke-width="2"/>
+  <text class="box-title" x="1028" y="637" text-anchor="middle">ImeSyncSnapshot</text>
+  <text class="text" x="1028" y="668" text-anchor="middle">selection / preedit / system mark</text>
+  <text class="small" x="1028" y="692" text-anchor="middle">clearSystemMark</text>
+  <text class="text" x="1028" y="735" text-anchor="middle">同步平台状态，避免重复提交和残留下划线</text>
+
+  <path class="line-gray" d="M1325 440 L1028 600"/>
+  <path class="line-gray" d="M845 650 L650 420"/>
+</svg>
