@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from '../components/PostList.astro';
+import TagCloud from '../components/TagCloud.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate, getAllTags, groupByYear, postUrl, SITE_DESCRIPTION, sortPosts } from '../lib/posts';
+
+const posts = sortPosts(await getCollection('posts'));
+const tags = getAllTags(posts);
+const years = groupByYear(posts);
+const recentPosts = posts.slice(0, 10);
+const latestPost = posts[0];
+---
+
+<BaseLayout current="home" description={SITE_DESCRIPTION}>
+  <section class="journal-hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Engineering Journal</p>
+      <h1>Scave's Blog</h1>
+      <p>{SITE_DESCRIPTION}</p>
+    </div>
+    {
+      latestPost && (
+        <a class="featured-entry" href={postUrl(latestPost)}>
+          <span>最新文章</span>
+          <strong>{latestPost.data.title}</strong>
+          <time datetime={latestPost.data.date.toISOString()}>{formatDate(latestPost.data.date)}</time>
+        </a>
+      )
+    }
+  </section>
+  <dl class="journal-stats">
+    <div>
+      <dt>{posts.length}</dt>
+      <dd>文章</dd>
+    </div>
+    <div>
+      <dt>{tags.length}</dt>
+      <dd>标签</dd>
+    </div>
+    <div>
+      <dt>{years.length}</dt>
+      <dd>年份</dd>
+    </div>
+  </dl>
+  <section class="home-grid">
+    <div class="content-column">
+      <div class="section-heading">
+        <div>
+          <h1>技术笔记</h1>
+        </div>
+        <span>{posts.length} 篇</span>
+      </div>
+      <PostList posts={recentPosts} />
+      {
+        posts.length > recentPosts.length && (
+          <a class="more-link" href="/page/2/">更早文章</a>
+        )
+      }
+    </div>
+    <aside class="sidebar">
+      <section class="sidebar-section profile">
+        <img src="/assets/img/logo.jpg" alt="" width="80" height="80" />
+        <div>
+          <h2>Scave</h2>
+          <p>{SITE_DESCRIPTION}</p>
+        </div>
+      </section>
+      <section class="sidebar-section">
+        <h2>标签</h2>
+        <TagCloud tags={tags} />
+      </section>
+      <section class="sidebar-section">
+        <h2>归档</h2>
+        <ul class="archive-shortcut">
+          {
+            years.map(([year, yearPosts]) => (
+              <li>
+                <a href={`/archives/${year}/`}>{year}</a>
+                <span>{yearPosts.length}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </aside>
+  </section>
+</BaseLayout>

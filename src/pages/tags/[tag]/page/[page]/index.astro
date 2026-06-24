@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from '../../../../../components/PostList.astro';
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import { getAllTags, sortPosts } from '../../../../../lib/posts';
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 10;
+  const posts = sortPosts(await getCollection('posts'));
+  const tags = getAllTags(posts);
+  return tags.flatMap((tag) => {
+    const taggedPosts = posts.filter((post) => post.data.tags.includes(tag.name));
+    const pageCount = Math.ceil(taggedPosts.length / PAGE_SIZE);
+    return Array.from({ length: Math.max(pageCount - 1, 0) }, (_, index) => {
+      const page = index + 2;
+      const start = (page - 1) * PAGE_SIZE;
+      return {
+        params: { tag: tag.name, page: String(page) },
+        props: {
+          tag: tag.name,
+          page,
+          pageCount,
+          posts: taggedPosts.slice(start, start + PAGE_SIZE),
+        },
+      };
+    });
+  });
+}
+
+const { tag, page, pageCount, posts } = Astro.props;
+---
+
+<BaseLayout title={`标签：${tag} - 第 ${page} 页`} current="tags">
+  <section class="content-column wide">
+    <div class="section-heading">
+      <h1>{tag}</h1>
+      <span>第 {page} 页</span>
+    </div>
+    <PostList posts={posts} />
+    <nav class="pager" aria-label="分页">
+      <a href={page === 2 ? `/tags/${encodeURIComponent(tag)}/` : `/tags/${encodeURIComponent(tag)}/page/${page - 1}/`}>上一页</a>
+      {
+        page < pageCount && (
+          <a href={`/tags/${encodeURIComponent(tag)}/page/${page + 1}/`}>下一页</a>
+        )
+      }
+    </nav>
+  </section>
+</BaseLayout>

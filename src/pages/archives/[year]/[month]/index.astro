@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from '../../../../components/PostList.astro';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { groupByMonth, sortPosts } from '../../../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = sortPosts(await getCollection('posts'));
+  return groupByMonth(posts).map(([key, monthPosts]) => {
+    const [year, month] = key.split('/');
+    return {
+      params: { year, month },
+      props: { year, month, posts: monthPosts },
+    };
+  });
+}
+
+const { year, month, posts } = Astro.props;
+---
+
+<BaseLayout title={`归档：${year}/${month}`} current="archives">
+  <section class="content-column wide">
+    <div class="section-heading">
+      <h1>{year}/{month}</h1>
+      <span>{posts.length} 篇</span>
+    </div>
+    <PostList posts={posts} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from '../../../components/PostList.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getAllTags, sortPosts } from '../../../lib/posts';
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 10;
+  const posts = sortPosts(await getCollection('posts'));
+  const tags = getAllTags(posts);
+  return tags.map((tag) => ({
+    params: { tag: tag.name },
+    props: {
+      tag: tag.name,
+      posts: posts.filter((post) => post.data.tags.includes(tag.name)).slice(0, PAGE_SIZE),
+      total: tag.count,
+    },
+  }));
+}
+
+const { tag, posts, total } = Astro.props;
+---
+
+<BaseLayout title={`标签：${tag}`} current="tags">
+  <section class="content-column wide">
+    <div class="section-heading">
+      <h1>{tag}</h1>
+      <span>{total} 篇</span>
+    </div>
+    <PostList posts={posts} />
+    {
+      total > posts.length && (
+        <a class="more-link" href={`/tags/${encodeURIComponent(tag)}/page/2/`}>更早文章</a>
+      )
+    }
+  </section>
+</BaseLayout>

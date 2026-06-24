@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from '../../../components/PostList.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { sortPosts } from '../../../lib/posts';
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 10;
+  const posts = sortPosts(await getCollection('posts'));
+  const pageCount = Math.ceil(posts.length / PAGE_SIZE);
+  return Array.from({ length: Math.max(pageCount - 1, 0) }, (_, index) => {
+    const page = index + 2;
+    const start = (page - 1) * PAGE_SIZE;
+    return {
+      params: { page: String(page) },
+      props: {
+        page,
+        pageCount,
+        posts: posts.slice(start, start + PAGE_SIZE),
+      },
+    };
+  });
+}
+
+const { page, pageCount, posts } = Astro.props;
+---
+
+<BaseLayout title={`文章 - 第 ${page} 页`} current="home">
+  <section class="content-column wide">
+    <div class="section-heading">
+      <h1>文章</h1>
+      <span>第 {page} 页</span>
+    </div>
+    <PostList posts={posts} />
+    <nav class="pager" aria-label="分页">
+      <a href={page === 2 ? '/' : `/page/${page - 1}/`}>上一页</a>
+      {
+        page < pageCount && (
+          <a href={`/page/${page + 1}/`}>下一页</a>
+        )
+      }
+    </nav>
+  </section>
+</BaseLayout>

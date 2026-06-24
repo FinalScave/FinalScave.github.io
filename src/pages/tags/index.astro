@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import TagCloud from '../../components/TagCloud.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllTags, sortPosts } from '../../lib/posts';
+
+const posts = sortPosts(await getCollection('posts'));
+const tags = getAllTags(posts);
+---
+
+<BaseLayout title="标签" current="tags">
+  <section class="content-column wide">
+    <div class="section-heading">
+      <h1>标签</h1>
+      <span>{tags.length} 个</span>
+    </div>
+    <TagCloud tags={tags} />
+  </section>
+</BaseLayout>

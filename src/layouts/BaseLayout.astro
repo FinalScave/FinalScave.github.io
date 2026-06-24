@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../lib/posts';
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: 'home' | 'archives' | 'tags';
+}
+
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  current,
+} = Astro.props;
+const pageTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="alternate" href="/atom.xml" title={SITE_TITLE} type="application/rss+xml" />
+    <link rel="icon" href="/assets/img/logo.jpg" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label={SITE_TITLE}>
+        <img src="/assets/img/logo.jpg" alt="" width="48" height="48" />
+        <span>
+          <strong>{SITE_TITLE}</strong>
+          <small>Engineering Journal</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a class:list={[{ active: current === 'home' }]} href="/">主页</a>
+        <a class:list={[{ active: current === 'archives' }]} href="/archives/">归档</a>
+        <a class:list={[{ active: current === 'tags' }]} href="/tags/">标签</a>
+      </nav>
+    </header>
+    <main class="site-main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <span>© {new Date().getFullYear()} Scave · Built with Astro</span>
+      <a href="/atom.xml">RSS</a>
+    </footer>
+  </body>
+</html>

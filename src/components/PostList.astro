@@ -1,0 +1,35 @@
+---
+import type { BlogPost } from '../lib/posts';
+import { formatDate, getExcerpt, postUrl, tagUrl } from '../lib/posts';
+
+interface Props {
+  posts: BlogPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ol class="post-list">
+  {
+    posts.map((post) => (
+      <li class="post-card">
+        <time class="post-date" datetime={post.data.date.toISOString()}>
+          {formatDate(post.data.date)}
+        </time>
+        <div class="post-card-main">
+          <a class="post-card-title" href={postUrl(post)}>
+            {post.data.title}
+          </a>
+          <p>{post.data.description ?? getExcerpt(post.body)}</p>
+          {post.data.tags.length > 0 && (
+            <span class="post-tags">
+              {post.data.tags.map((tag) => (
+                <a href={tagUrl(tag)}>{tag}</a>
+              ))}
+            </span>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>

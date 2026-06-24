@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  formatDate,
+  getExcerpt,
+  postUrl,
+  sortPosts,
+  tagUrl,
+  type BlogPost,
+} from '../lib/posts';
+import { trimSlashes } from '../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: trimSlashes(post.data.path) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: BlogPost };
+const { Content } = await render(post);
+const posts = sortPosts(await getCollection('posts'));
+const currentIndex = posts.findIndex((item) => item.id === post.id);
+const newerPost = currentIndex > 0 ? posts[currentIndex - 1] : undefined;
+const olderPost = currentIndex >= 0 ? posts[currentIndex + 1] : undefined;
+const description = post.data.description ?? getExcerpt(post.body);
+---
+
+<BaseLayout title={post.data.title} description={description}>
+  <article class="post-page">
+    <header class="post-header">
+      <h1>{post.data.title}</h1>
+      <div class="post-meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        {
+          post.data.tags.length > 0 && (
+            <span class="post-tags">
+              {post.data.tags.map((tag) => (
+                <a href={tagUrl(tag)}>{tag}</a>
+              ))}
+            </span>
+          )
+        }
+      </div>
+    </header>
+    <div class="post-content">
+      <Content />
+    </div>
+  </article>
+  <nav class="post-nav-links" aria-label="文章导航">
+    {
+      newerPost ? (
+        <a href={postUrl(newerPost)}>
+          <span>上一篇</span>
+          {newerPost.data.title}
+        </a>
+      ) : (
+        <span></span>
+      )
+    }
+    {
+      olderPost && (
+        <a href={postUrl(olderPost)}>
+          <span>下一篇</span>
+          {olderPost.data.title}
+        </a>
+      )
+    }
+  </nav>
+</BaseLayout>

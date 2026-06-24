@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import PostList from '../../components/PostList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { archiveMonthUrl, archiveYearUrl, groupByMonth, groupByYear, sortPosts } from '../../lib/posts';
+
+const posts = sortPosts(await getCollection('posts'));
+const years = groupByYear(posts);
+const months = groupByMonth(posts);
+---
+
+<BaseLayout title="归档" current="archives">
+  <section class="archive-layout">
+    <aside class="archive-index">
+      <h1>归档</h1>
+      <ul>
+        {
+          years.map(([year, yearPosts]) => (
+            <li>
+              <a href={archiveYearUrl(year)}>{year}</a>
+              <span>{yearPosts.length}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <h2>月份</h2>
+      <ul>
+        {
+          months.map(([key, monthPosts]) => {
+            const [year, month] = key.split('/');
+            return (
+              <li>
+                <a href={archiveMonthUrl(year, month)}>{key}</a>
+                <span>{monthPosts.length}</span>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </aside>
+    <div class="content-column">
+      <div class="section-heading">
+        <h2>全部文章</h2>
+        <span>{posts.length} 篇</span>
+      </div>
+      <PostList posts={posts} />
+    </div>
+  </section>
+</BaseLayout>
