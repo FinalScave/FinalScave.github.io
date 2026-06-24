@@ -4,3 +4,5 @@ dist/
 .vercel/
 .netlify/
 astro-preview.*.log
+.codex
+.claude
