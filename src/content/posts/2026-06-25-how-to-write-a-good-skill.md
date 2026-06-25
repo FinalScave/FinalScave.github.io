@@ -1,5 +1,5 @@
 ---
-title: "浅谈 Skill 编写：把经验做成 AI 可执行的上下文"
+title: "怎么写好一个 Skill：让 AI 按你的方式做事"
 date: "2026-06-25T21:30:00.000+08:00"
 path: "2026/06/25/how-to-write-a-good-skill/"
 tags: ["心得", "AI", "Skill", "工程化"]
