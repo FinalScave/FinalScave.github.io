@@ -67,7 +67,7 @@ SweetEditor 旧模型：X world</code></pre>
 
 <p>这一步把排查方向从 offset 拉回了语义。<br>因为很多 IME 问题看起来都像“少同步了一次 selection”或者“range 偏移算错了”，但实际可能是语义错了。<br>offset 错了通常是局部 bug，语义错了就会出现非常玄学的连锁反应：修候选词会破坏删除，修删除会破坏英文输入，修 Flutter Android 又破坏 Native Android。</p>
 
-<p>从提交记录上也能看出这个过程是分阶段收敛的。<br>4 月底先修 Android composition 输入和回归问题，那时重点还是把明显的输入错误补上。<br>5 月中旬开始把 composition controller 绑定到 editor core，并拆分 Core IME 实现，这一步相当于把 preedit 生命周期从平台层往 Core 收。<br>后面去掉 sync snapshot 里重复的 text window，把文本窗口暴露策略集中到 Core，避免平台层自己拼上下文。<br>6 月份再拆 action source 和 text change 语义，把“这次操作从哪里来”和“文档实际发生了什么变化”分开；最后 Android system mark 删除、preedit sync、operation protocol 继续收口。<br>这些 commit 看起来都是 fix/refactor，但实际是在把“猜测”从平台层和 Core 层里清出去。</p>
+<p>这轮调整大致分成几个阶段。<br>一开始重点还是把 Android composition 输入和回归问题补上，先让明显错误的输入路径回到可用状态。<br>后面开始把 composition controller 绑定到 editor core，并拆分 Core IME 实现，相当于把 preedit 生命周期从平台层往 Core 收。<br>再往后，sync snapshot 里重复的 text window 被去掉，文本窗口暴露策略集中到 Core，避免平台层自己拼上下文。<br>最后继续拆 action source 和 text change 语义，把“这次操作从哪里来”和“文档实际发生了什么变化”分开；Android system mark 删除、preedit sync、operation protocol 也沿着这个方向继续收口。<br>这些变化表面上分散在不同模块里，实际都是在把“猜测”从平台层和 Core 层里清出去。</p>
 
 <h2>preedit 和 system mark 必须分开</h2>
 

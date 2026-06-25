@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="660" viewBox="0 0 1180 660" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor 一致性测试闭环</title>
+  <desc id="desc">Core 行为测试、协议快照、平台标准和失败用例共同形成回归测试闭环。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .title { font: 700 30px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .subtitle { font: 16px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .card-title { font: 700 18px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .body { font: 15px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .small { font: 13px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .mono { font: 14px "JetBrains Mono", "Consolas", monospace; fill: #0f172a; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1180" height="660" fill="#f8fafc"/>
+  <text class="title" x="590" y="54" text-anchor="middle">跨平台一致性，最终要落到可重复的 Core 行为</text>
+  <text class="subtitle" x="590" y="84" text-anchor="middle">Demo 只能暴露问题，测试要把问题变成以后不能再退回去的边界</text>
+
+  <g transform="translate(438 252)">
+    <circle cx="152" cy="90" r="92" fill="#ffffff" stroke="#2563eb" stroke-width="3"/>
+    <text class="card-title" x="152" y="72" text-anchor="middle">Core 行为事实</text>
+    <text class="body" x="152" y="102" text-anchor="middle">文档、布局、编辑、IME</text>
+    <text class="small" x="152" y="130" text-anchor="middle">平台只消费最终协议</text>
+  </g>
+
+  <g transform="translate(70 150)">
+    <rect x="0" y="0" width="294" height="128" rx="16" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+    <text class="card-title" x="24" y="36">Layout Mapping Tests</text>
+    <text class="body" x="24" y="68">hitTest 与坐标反查一致</text>
+    <text class="small" x="24" y="96">wrap、crop、emoji、CodeLens、fold tail</text>
+  </g>
+
+  <g transform="translate(816 150)">
+    <rect x="0" y="0" width="294" height="128" rx="16" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+    <text class="card-title" x="24" y="36">Editor Semantic Tests</text>
+    <text class="body" x="24" y="68">编辑结果和副作用一起测</text>
+    <text class="small" x="24" y="96">fold edit、selection、search、gesture</text>
+  </g>
+
+  <g transform="translate(70 428)">
+    <rect x="0" y="0" width="294" height="128" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+    <text class="card-title" x="24" y="36">Protocol Snapshot</text>
+    <text class="body" x="24" y="68">生成模型不能悄悄漂移</text>
+    <text class="mono" x="24" y="96">schema.snapshot.json</text>
+  </g>
+
+  <g transform="translate(816 428)">
+    <rect x="0" y="0" width="294" height="128" rx="16" fill="#f5f3ff" stroke="#a78bfa" stroke-width="2"/>
+    <text class="card-title" x="24" y="36">Platform Standard</text>
+    <text class="body" x="24" y="68">平台禁止重推 Core 语义</text>
+    <text class="small" x="24" y="96">final rect、action result、visible range</text>
+  </g>
+
+  <path d="M364 214 C448 170, 508 170, 554 244" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M624 244 C674 170, 734 170, 816 214" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M816 492 C732 536, 674 536, 624 442" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M554 442 C508 536, 448 536, 364 492" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g transform="translate(438 585)">
+    <rect x="0" y="-24" width="304" height="46" rx="23" fill="#e0f2fe" stroke="#7dd3fc"/>
+    <text class="body" x="152" y="5" text-anchor="middle">每次修 bug，都要留下可回放的失败样本</text>
+  </g>
+</svg>

@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="760" viewBox="0 0 1240 760" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor 失败统一设计拆分图</title>
+  <desc id="desc">若干曾经试图统一的模型，被平台事实和编辑语义击穿后，最终拆成更稳定的协议边界。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#64748b"/>
+    </marker>
+    <style>
+      .title { font: 700 30px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .subtitle { font: 16px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .head { font: 700 18px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .cell-title { font: 700 16px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .body { font: 14px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .mono { font: 13px "JetBrains Mono", "Consolas", monospace; fill: #0f172a; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1240" height="760" fill="#f8fafc"/>
+  <text class="title" x="620" y="54" text-anchor="middle">失败的统一没有消失，它们变成了协议边界</text>
+  <text class="subtitle" x="620" y="84" text-anchor="middle">每次拆分都对应一个被真实平台或真实编辑行为击穿的假设</text>
+
+  <text class="head" x="112" y="132">曾经想统一</text>
+  <text class="head" x="482" y="132">被什么击穿</text>
+  <text class="head" x="852" y="132">最后拆成什么</text>
+
+  <g transform="translate(64 154)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <text class="cell-title" x="20" y="30">一个 composition API</text>
+    <text class="body" x="20" y="58">所有平台都映射成预编辑状态</text>
+  </g>
+  <g transform="translate(432 154)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#fef2f2" stroke="#f87171"/>
+    <text class="cell-title" x="20" y="30">Android system mark</text>
+    <text class="body" x="20" y="58">范围标记不等于可替换 preedit</text>
+  </g>
+  <g transform="translate(800 154)">
+    <rect x="0" y="0" width="354" height="82" rx="12" fill="#ecfdf5" stroke="#22c55e"/>
+    <text class="cell-title" x="20" y="30">command / text_update</text>
+    <text class="mono" x="20" y="58">PREEDIT + SYSTEM_MARK</text>
+  </g>
+
+  <g transform="translate(64 256)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <text class="cell-title" x="20" y="30">平台手写协议模型</text>
+    <text class="body" x="20" y="58">Android、Swift、Dart、C# 各抄一份</text>
+  </g>
+  <g transform="translate(432 256)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#fff7ed" stroke="#fb923c"/>
+    <text class="cell-title" x="20" y="30">字段漂移和枚举漂移</text>
+    <text class="body" x="20" y="58">一个字段改动要在七个平台同步</text>
+  </g>
+  <g transform="translate(800 256)">
+    <rect x="0" y="0" width="354" height="82" rx="12" fill="#eff6ff" stroke="#60a5fa"/>
+    <text class="cell-title" x="20" y="30">生成式 CoreProtocol</text>
+    <text class="mono" x="20" y="58">schema snapshot + golden fixture</text>
+  </g>
+
+  <g transform="translate(64 358)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <text class="cell-title" x="20" y="30">平台按 range 重算几何</text>
+    <text class="body" x="20" y="58">平台自己推选区、诊断、搜索矩形</text>
+  </g>
+  <g transform="translate(432 358)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#fef2f2" stroke="#f87171"/>
+    <text class="cell-title" x="20" y="30">wrap / fold / crop 组合爆炸</text>
+    <text class="body" x="20" y="58">同一 range 在平台上画出不同形状</text>
+  </g>
+  <g transform="translate(800 358)">
+    <rect x="0" y="0" width="354" height="82" rx="12" fill="#f5f3ff" stroke="#a78bfa"/>
+    <text class="cell-title" x="20" y="30">Core 输出 final rect</text>
+    <text class="body" x="20" y="58">平台只负责用原生系统绘制</text>
+  </g>
+
+  <g transform="translate(64 460)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <text class="cell-title" x="20" y="30">按方法名推断副作用</text>
+    <text class="body" x="20" y="58">平台猜是否 repaint、relayout、sync IME</text>
+  </g>
+  <g transform="translate(432 460)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#fff7ed" stroke="#fb923c"/>
+    <text class="cell-title" x="20" y="30">同一调用有不同后果</text>
+    <text class="body" x="20" y="58">选区、搜索、IME、滚动会互相牵连</text>
+  </g>
+  <g transform="translate(800 460)">
+    <rect x="0" y="0" width="354" height="82" rx="12" fill="#ecfdf5" stroke="#22c55e"/>
+    <text class="cell-title" x="20" y="30">EditorActionResult</text>
+    <text class="mono" x="20" y="58">source + textChangeKind + redraw flags</text>
+  </g>
+
+  <g transform="translate(64 562)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <text class="cell-title" x="20" y="30">隐藏行等于不可交互</text>
+    <text class="body" x="20" y="58">折叠后只画一个占位符</text>
+  </g>
+  <g transform="translate(432 562)">
+    <rect x="0" y="0" width="314" height="82" rx="12" fill="#fef2f2" stroke="#f87171"/>
+    <text class="cell-title" x="20" y="30">尾部文本仍要能命中</text>
+    <text class="body" x="20" y="58">光标、选区、搜索、编辑都需要源行</text>
+  </g>
+  <g transform="translate(800 562)">
+    <rect x="0" y="0" width="354" height="82" rx="12" fill="#eff6ff" stroke="#60a5fa"/>
+    <text class="cell-title" x="20" y="30">source_line 投影</text>
+    <text class="body" x="20" y="58">视觉 owner 和文本来源分开记录</text>
+  </g>
+
+  <path d="M382 195 L426 195" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M750 195 L794 195" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M382 297 L426 297" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M750 297 L794 297" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M382 399 L426 399" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M750 399 L794 399" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M382 501 L426 501" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M750 501 L794 501" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M382 603 L426 603" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M750 603 L794 603" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="184" y="694" width="872" height="40" rx="20" fill="#e0f2fe" stroke="#7dd3fc"/>
+  <text class="subtitle" x="620" y="720" text-anchor="middle">统一可以保留在语义层，不能保留在对平台事实的想象里</text>
+</svg>

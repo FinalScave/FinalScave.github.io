@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="640" viewBox="0 0 1180 640" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor 折叠尾部投影</title>
+  <desc id="desc">折叠区域隐藏逻辑行后，尾部文本通过 source_line 投影到可见视觉行，命中和编辑仍回到源行。</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .title { font: 700 30px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .subtitle { font: 16px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .section { font: 700 20px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .body { font: 15px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .small { font: 13px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .mono { font: 15px "JetBrains Mono", "Consolas", monospace; fill: #0f172a; }
+      .mono-bold { font: 700 17px "JetBrains Mono", "Consolas", monospace; fill: #0f172a; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1180" height="640" fill="#f8fafc"/>
+  <text class="title" x="590" y="54" text-anchor="middle">折叠以后，隐藏行仍然要保留可命中的来源</text>
+  <text class="subtitle" x="590" y="84" text-anchor="middle">折叠尾部投影把“可见视觉行”和“真实源行”拆开，避免点击和编辑落到错误行</text>
+
+  <g transform="translate(62 132)">
+    <rect x="0" y="0" width="328" height="310" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text class="section" x="26" y="40">Document</text>
+    <text class="small" x="26" y="66">逻辑行还在，只有可见性变了</text>
+    <rect x="28" y="98" width="272" height="46" rx="9" fill="#f0fdf4" stroke="#22c55e"/>
+    <text class="mono-bold" x="48" y="128">0  if {</text>
+    <text class="small" x="224" y="128">visible</text>
+    <rect x="28" y="158" width="272" height="46" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="6 5"/>
+    <text class="mono" x="48" y="188">1    body</text>
+    <text class="small" x="222" y="188">hidden</text>
+    <rect x="28" y="218" width="272" height="46" rx="9" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="6 5"/>
+    <text class="mono" x="48" y="248">2  } tail</text>
+    <text class="small" x="222" y="248">hidden</text>
+  </g>
+
+  <path d="M408 286 L498 286" stroke="#2563eb" stroke-width="5" marker-end="url(#arrow-blue)"/>
+  <text class="body" x="453" y="260" text-anchor="middle">尾部投影</text>
+
+  <g transform="translate(520 132)">
+    <rect x="0" y="0" width="598" height="310" rx="16" fill="#ffffff" stroke="#93c5fd" stroke-width="2"/>
+    <text class="section" x="28" y="40">Visual Line</text>
+    <text class="small" x="28" y="66">平台看到一行，Core 记住每段文本来自哪里</text>
+    <rect x="44" y="112" width="508" height="74" rx="12" fill="#eff6ff" stroke="#60a5fa"/>
+    <text class="mono-bold" x="70" y="158">if {</text>
+    <rect x="142" y="126" width="64" height="36" rx="8" fill="#fff7ed" stroke="#fb923c"/>
+    <text class="mono-bold" x="158" y="150">…</text>
+    <text class="mono-bold" x="226" y="158">} tail</text>
+    <text class="small" x="70" y="206">owner logical_line = 0</text>
+    <text class="small" x="226" y="206">projected run: source_line = 2</text>
+
+    <path d="M264 228 L264 270" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-red)"/>
+    <rect x="72" y="278" width="420" height="64" rx="12" fill="#fef2f2" stroke="#f87171"/>
+    <text class="body" x="98" y="306">点击或取光标坐标时，结果回到</text>
+    <text class="mono-bold" x="330" y="306">TextPosition{2, col}</text>
+    <text class="small" x="98" y="330">视觉行属于 0，源文本仍属于 2</text>
+  </g>
+
+  <g transform="translate(118 482)">
+    <rect x="0" y="0" width="424" height="98" rx="16" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+    <text class="section" x="26" y="36">单行尾部编辑</text>
+    <text class="body" x="26" y="66">只改投影尾部，保持折叠状态</text>
+    <text class="small" x="26" y="88">隐藏源行继续 height = 0，owner 行重新布局</text>
+  </g>
+  <g transform="translate(638 482)">
+    <rect x="0" y="0" width="424" height="98" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+    <text class="section" x="26" y="36">结构性编辑</text>
+    <text class="body" x="26" y="66">跨行或破坏边界时自动展开</text>
+    <text class="small" x="26" y="88">避免在隐藏结构里制造不可见状态</text>
+  </g>
+</svg>

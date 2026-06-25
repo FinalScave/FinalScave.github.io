@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="640" viewBox="0 0 1180 640" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor 坐标映射链路</title>
+  <desc id="desc">从文档位置到视觉行、视觉 run、屏幕矩形和 hit test 的双向映射。</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#16a34a"/>
+    </marker>
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 30px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .subtitle { font: 16px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .card { fill: #ffffff; stroke-width: 2; filter: url(#shadow); }
+      .card-title { font: 700 18px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .card-body { font: 14px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .mono { font: 14px "JetBrains Mono", "Consolas", monospace; fill: #0f172a; }
+      .pill { font: 13px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .note { font: 15px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .small { font: 12px "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1180" height="640"/>
+  <text class="title" x="590" y="54" text-anchor="middle">坐标系统不是 line/column 转 x/y 这么简单</text>
+  <text class="subtitle" x="590" y="84" text-anchor="middle">同一份文档位置，要能反向命中、参与选区、穿过折叠投影，并保持平台绘制一致</text>
+
+  <g transform="translate(56 130)">
+    <rect class="card" x="0" y="0" width="240" height="148" rx="12" stroke="#60a5fa"/>
+    <text class="card-title" x="24" y="36">Document Position</text>
+    <text class="mono" x="24" y="72">TextPosition{line, column}</text>
+    <text class="card-body" x="24" y="105">文档语义坐标</text>
+    <text class="card-body" x="24" y="128">不包含像素和滚动信息</text>
+  </g>
+
+  <g transform="translate(336 130)">
+    <rect class="card" x="0" y="0" width="240" height="148" rx="12" stroke="#f97316"/>
+    <text class="card-title" x="24" y="36">Logical / Visual Line</text>
+    <text class="mono" x="24" y="72">logical_line + wrap_index</text>
+    <text class="card-body" x="24" y="105">自动换行、隐藏行</text>
+    <text class="card-body" x="24" y="128">CodeLens / phantom 行语义</text>
+  </g>
+
+  <g transform="translate(616 130)">
+    <rect class="card" x="0" y="0" width="240" height="148" rx="12" stroke="#a855f7"/>
+    <text class="card-title" x="24" y="36">VisualRun Ownership</text>
+    <text class="mono" x="24" y="68">column / length</text>
+    <text class="mono" x="24" y="91">source_line</text>
+    <text class="card-body" x="24" y="118">文本、链接、折叠尾部</text>
+    <text class="card-body" x="24" y="140">虚拟 run 跳过文档命中</text>
+  </g>
+
+  <g transform="translate(896 130)">
+    <rect class="card" x="0" y="0" width="228" height="148" rx="12" stroke="#22c55e"/>
+    <text class="card-title" x="24" y="36">Screen Geometry</text>
+    <text class="mono" x="24" y="72">Rect / PointF / hit target</text>
+    <text class="card-body" x="24" y="105">textAreaX + scroll</text>
+    <text class="card-body" x="24" y="128">平台直接绘制最终几何</text>
+  </g>
+
+  <path d="M296 204 L328 204" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-blue)"/>
+  <path d="M576 204 L608 204" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-blue)"/>
+  <path d="M856 204 L888 204" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-blue)"/>
+
+  <g transform="translate(72 330)">
+    <rect x="0" y="0" width="1036" height="218" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text class="card-title" x="32" y="42">双向链路必须对得上</text>
+    <path d="M140 92 C280 46, 430 46, 570 92" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-blue)"/>
+    <path d="M570 140 C430 188, 280 188, 140 140" fill="none" stroke="#16a34a" stroke-width="4" marker-end="url(#arrow-green)"/>
+    <rect x="54" y="82" width="206" height="68" rx="10" fill="#eff6ff" stroke="#60a5fa"/>
+    <text class="mono" x="80" y="112">TextPosition</text>
+    <text class="small" x="80" y="135">line 2, column 4</text>
+    <rect x="452" y="82" width="240" height="68" rx="10" fill="#f0fdf4" stroke="#22c55e"/>
+    <text class="mono" x="484" y="112">Screen Point / Rect</text>
+    <text class="small" x="484" y="135">x/y 已扣除 scroll</text>
+    <text class="pill" x="306" y="72">getPositionScreenCoord</text>
+    <text class="pill" x="326" y="185">hitTestPointer / hitTestTextBoundary</text>
+
+    <g transform="translate(760 58)">
+      <rect x="0" y="0" width="228" height="120" rx="12" fill="#fff7ed" stroke="#fb923c"/>
+      <text class="card-title" x="22" y="34">Core 要守住的不变量</text>
+      <text class="note" x="22" y="68">可见 source 位置能回到</text>
+      <text class="note" x="22" y="94">同一个文档语义边界</text>
+    </g>
+  </g>
+
+  <g transform="translate(132 575)">
+    <rect x="0" y="-22" width="916" height="38" rx="19" fill="#e0f2fe"/>
+    <text class="subtitle" x="458" y="3" text-anchor="middle">CodeLens、PhantomText、InlayHint、Fold tail 都只是视觉形态，命中结果仍要落回明确的文档语义</text>
+  </g>
+</svg>
