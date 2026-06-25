@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor 平台 Provider 能力流转</title>
+  <desc id="desc">平台层根据可见行、文本变更和元数据请求 DecorationProvider 或 CompletionProvider，结果经过 Manager 合并和过期保护后批量写回 Core。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .ctx { fill: #edf6ff; stroke: #77aee8; stroke-width: 2; rx: 10; }
+      .manager { fill: #fff7e8; stroke: #e5a84a; stroke-width: 2; rx: 10; }
+      .provider { fill: #ffffff; stroke: #d9dee8; stroke-width: 2; rx: 10; }
+      .core { fill: #eef8f0; stroke: #58ad73; stroke-width: 2; rx: 10; }
+      .guard { fill: #f2efff; stroke: #8d77d2; stroke-width: 2; rx: 10; }
+      .title { font: 700 30px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .subtitle { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+      .h { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .t { font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #374151; }
+      .small { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+      .mono { font: 600 13px ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; fill: #1f2937; }
+      .arrow { stroke: #596273; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #8b95a7; stroke-width: 2; fill: none; stroke-dasharray: 7 6; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#596273"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="650"/>
+  <text x="600" y="52" text-anchor="middle" class="title">平台层能力的收口路径</text>
+  <text x="600" y="82" text-anchor="middle" class="subtitle">Provider 负责宿主扩展，Manager 负责收口，Core 仍只接收标准装饰和编辑模型</text>
+
+  <rect x="70" y="145" width="230" height="130" class="ctx"/>
+  <text x="185" y="178" text-anchor="middle" class="h">DecorationContext</text>
+  <text x="185" y="208" text-anchor="middle" class="mono">visibleLineRange</text>
+  <text x="185" y="232" text-anchor="middle" class="mono">textChanges</text>
+  <text x="185" y="256" text-anchor="middle" class="t">语言配置 / 元数据</text>
+
+  <rect x="360" y="145" width="230" height="130" class="manager"/>
+  <text x="475" y="178" text-anchor="middle" class="h">ProviderManager</text>
+  <text x="475" y="208" text-anchor="middle" class="t">遍历多个 Provider</text>
+  <text x="475" y="232" text-anchor="middle" class="t">合并多次 snapshot</text>
+  <text x="475" y="256" text-anchor="middle" class="t">丢弃 stale 结果</text>
+
+  <rect x="650" y="120" width="210" height="76" class="provider"/>
+  <text x="755" y="150" text-anchor="middle" class="h">DecorationProvider</text>
+  <text x="755" y="174" text-anchor="middle" class="t">高亮 / 诊断 / Inlay</text>
+
+  <rect x="650" y="224" width="210" height="76" class="provider"/>
+  <text x="755" y="254" text-anchor="middle" class="h">CompletionProvider</text>
+  <text x="755" y="278" text-anchor="middle" class="t">补全项 / TextEdit</text>
+
+  <rect x="930" y="145" width="210" height="130" class="core"/>
+  <text x="1035" y="178" text-anchor="middle" class="h">Core 标准入口</text>
+  <text x="1035" y="208" text-anchor="middle" class="mono">setBatchLineSpans</text>
+  <text x="1035" y="232" text-anchor="middle" class="mono">applyTextEdits</text>
+  <text x="1035" y="256" text-anchor="middle" class="t">触发布局 dirty</text>
+
+  <path d="M300 210 L360 210" class="arrow"/>
+  <path d="M590 190 C615 165, 625 155, 650 155" class="arrow"/>
+  <path d="M590 230 C615 255, 625 263, 650 263" class="arrow"/>
+  <path d="M860 158 C900 160, 910 190, 930 205" class="arrow"/>
+  <path d="M860 263 C900 262, 912 240, 930 225" class="arrow"/>
+
+  <rect x="150" y="380" width="270" height="112" class="guard"/>
+  <text x="285" y="412" text-anchor="middle" class="h">范围约束</text>
+  <text x="285" y="440" text-anchor="middle" class="mono">visibleLineRange</text>
+  <text x="285" y="464" text-anchor="middle" class="t">慢 Provider 不应扫全文</text>
+  <text x="285" y="486" text-anchor="middle" class="t">大文件可分批补齐</text>
+
+  <rect x="465" y="380" width="270" height="112" class="guard"/>
+  <text x="600" y="412" text-anchor="middle" class="h">时序约束</text>
+  <text x="600" y="440" text-anchor="middle" class="mono">generation / receiver</text>
+  <text x="600" y="464" text-anchor="middle" class="t">滚动、换文档后旧结果失效</text>
+  <text x="600" y="486" text-anchor="middle" class="t">异步结果不能改旧状态</text>
+
+  <rect x="780" y="380" width="270" height="112" class="guard"/>
+  <text x="915" y="412" text-anchor="middle" class="h">写回约束</text>
+  <text x="915" y="440" text-anchor="middle" class="mono">MERGE / REPLACE_RANGE</text>
+  <text x="915" y="464" text-anchor="middle" class="t">结果被转成标准模型</text>
+  <text x="915" y="486" text-anchor="middle" class="t">平台不直接改布局内部状态</text>
+
+  <path d="M475 275 C420 330, 350 350, 285 380" class="dash"/>
+  <path d="M475 275 C535 330, 580 350, 600 380" class="dash"/>
+  <path d="M1035 275 C1010 330, 960 350, 915 380" class="dash"/>
+</svg>

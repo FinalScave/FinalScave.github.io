@@ -1,15 +1,15 @@
 ---
-title: "浅谈 SweetEditor 的 IME 统一适配——从强行统一 API 到 command/text_update 双模型"
+title: "SweetEditor IME 统一适配：从强行统一 API 到 command/text_update 双模型"
 date: "2026-06-25T10:00:00.000+08:00"
 path: "2026/06/25/sweeteditor-ime-unified-adapter/"
 tags: ["心得", "SweetEditor", "IME", "跨平台"]
-description: "这篇文章记录 SweetEditor 从强行统一 IME API 到拆出 command/text_update 双模型的过程，以及 Android、Apple、Flutter、Swing、WinForms、OHOS 等平台在 IME 语义上的差异。"
+description: "记录 SweetEditor 从强行统一 IME API 到拆出 command/text_update 双模型的过程，以及 Android、Apple、Flutter、Swing、WinForms、OHOS 等平台在 IME 语义上的差异。"
 ---
 <p>最近 SweetEditor 的 IME 适配算是走完了一轮非常折磨人的收敛过程。<br>一开始我以为这只是把几个平台的输入法回调接到 C++ Core 上，最多处理一下 UTF-16 offset、候选词下划线、composition range 之类的问题，结果真正做起来才发现，API 数量只是表面问题，不同平台对“正在输入”这件事的语义根本不一样。</p>
 
 <p>比如 Flutter Windows 上看起来基本正常，到了 Flutter Android 就会出现第一次输入无效、候选词不能正确替换、下划线残留、点击词语后高亮混乱等问题。<br>而当我尝试修 Flutter Android 的时候，又把 Native Android 搞坏了：在 Android 原生 Demo 里点击一个英文单词，然后继续通过输入法输入字符，结果没有在光标处插入，整个被标记的单词反而被替换掉。<br>这类问题如果只看单个平台，很容易误判成某一个回调处理错了，但把 Android、Flutter、Apple、Swing、WinForms、OHOS 全部放到一起看，就会发现真正的问题是：平台层和 Core 层都在猜 IME 的语义。</p>
 
-<p>这篇文章就从这些事故写起。<br>Flutter Android 的 composing 为什么不能直接信，Native Android 的 <code>setComposingRegion</code> 为什么会把一个普通英文词替换掉，后面又为什么必须拆出 preedit、system mark、command 和 text_update。<br>这些坑串起来，基本就是 SweetEditor 这轮 IME 重构的主线。</p>
+<p>这几个事故就是入口。<br>Flutter Android 的 composing 为什么不能直接信，Native Android 的 <code>setComposingRegion</code> 为什么会把一个普通英文词替换掉，后面又为什么必须拆出 preedit、system mark、command 和 text_update。<br>这些坑串起来，基本就是 SweetEditor 这轮 IME 重构的主线。</p>
 
 <!--more-->
 
@@ -142,4 +142,4 @@ SweetEditor 旧模型：X world</code></pre>
 
 <p>所以最后拆成 <code>command</code> 和 <code>text_update</code>，对我来说更像是给协议加了一条约束：<br>不要把“平台做了什么”和“文本变成什么”混在一起。<br>前者是意图，后者是结果。<br>IME 适配最危险的地方，就是在这两者之间凭经验补语义。</p>
 
-<p>这轮适配走下来确实很艰苦，但也让 SweetEditor 的输入协议变得比以前扎实很多。<br>以后再接新的平台，重点就不是重新写一套 composition 状态机，而是先判断平台能提供哪类事实，然后选择 command 或 text_update，把剩下的判断交给 Core。<br>IME 没有变简单，只是复杂度被放回了它应该待的位置。</p>
+<p>这轮适配走下来确实很艰苦，但也让 SweetEditor 的输入协议变得比以前扎实很多。<br>以后再接新的平台，重点会落在判断平台能提供哪类事实，再选择 command 或 text_update，把剩下的判断交给 Core。<br>IME 没有变简单，只是复杂度被放回了它应该待的位置。</p>

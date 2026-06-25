@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor 性能路径</title>
+  <desc id="desc">编辑只标记 dirty，构建渲染模型时解析可见范围，测量结果缓存，跨语言调用被限制在可见区域和批量 payload 中。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .box { fill: #ffffff; stroke: #d9dee8; stroke-width: 2; rx: 10; }
+      .hot { fill: #fff6e6; stroke: #e0a23b; stroke-width: 2; rx: 10; }
+      .core { fill: #eef8f0; stroke: #58ad73; stroke-width: 2; rx: 10; }
+      .native { fill: #edf6ff; stroke: #77aee8; stroke-width: 2; rx: 10; }
+      .guard { fill: #f2efff; stroke: #8d77d2; stroke-width: 2; rx: 10; }
+      .title { font: 700 30px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .subtitle { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+      .h { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .t { font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #374151; }
+      .small { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+      .mono { font: 600 13px ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; fill: #1f2937; }
+      .arrow { stroke: #596273; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #8b95a7; stroke-width: 2; fill: none; stroke-dasharray: 7 6; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#596273"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="680"/>
+  <text x="600" y="52" text-anchor="middle" class="title">SweetEditor 的性能路径</text>
+  <text x="600" y="82" text-anchor="middle" class="subtitle">热路径靠可见范围、缓存和批处理，把跨语言调用压在可控范围内</text>
+
+  <g>
+    <rect x="70" y="130" width="180" height="86" class="box"/>
+    <text x="160" y="160" text-anchor="middle" class="h">输入或装饰变化</text>
+    <text x="160" y="184" text-anchor="middle" class="t">文本编辑 / 滚动</text>
+    <text x="160" y="204" text-anchor="middle" class="t">Provider 结果</text>
+
+    <rect x="300" y="130" width="180" height="86" class="core"/>
+    <text x="390" y="160" text-anchor="middle" class="h">只标记 dirty</text>
+    <text x="390" y="184" text-anchor="middle" class="t">char dirty</text>
+    <text x="390" y="204" text-anchor="middle" class="t">layout dirty</text>
+
+    <rect x="530" y="130" width="190" height="86" class="hot"/>
+    <text x="625" y="160" text-anchor="middle" class="h">构建 RenderModel</text>
+    <text x="625" y="184" text-anchor="middle" class="mono">buildRenderModel()</text>
+    <text x="625" y="204" text-anchor="middle" class="t">按需触发布局</text>
+
+    <rect x="770" y="130" width="190" height="86" class="hot"/>
+    <text x="865" y="160" text-anchor="middle" class="h">解析可见行</text>
+    <text x="865" y="184" text-anchor="middle" class="mono">resolveVisibleLines()</text>
+    <text x="865" y="204" text-anchor="middle" class="t">超出视口立即停止</text>
+
+    <rect x="1000" y="130" width="140" height="86" class="native"/>
+    <text x="1070" y="160" text-anchor="middle" class="h">原生绘制</text>
+    <text x="1070" y="184" text-anchor="middle" class="t">Canvas / CoreText</text>
+    <text x="1070" y="204" text-anchor="middle" class="t">GDI+ / ArkUI</text>
+  </g>
+
+  <path d="M250 173 L300 173" class="arrow"/>
+  <path d="M480 173 L530 173" class="arrow"/>
+  <path d="M720 173 L770 173" class="arrow"/>
+  <path d="M960 173 L1000 173" class="arrow"/>
+
+  <rect x="110" y="295" width="290" height="120" class="guard"/>
+  <text x="255" y="327" text-anchor="middle" class="h">跨语言回调边界</text>
+  <text x="255" y="355" text-anchor="middle" class="mono">TextMeasurer</text>
+  <text x="255" y="380" text-anchor="middle" class="t">只在布局缺宽度时反调平台</text>
+  <text x="255" y="400" text-anchor="middle" class="t">测量结果进入 Core 缓存</text>
+
+  <rect x="455" y="295" width="290" height="120" class="guard"/>
+  <text x="600" y="327" text-anchor="middle" class="h">传输边界</text>
+  <text x="600" y="355" text-anchor="middle" class="mono">binary payload</text>
+  <text x="600" y="380" text-anchor="middle" class="t">复杂结果一次编码一次解码</text>
+  <text x="600" y="400" text-anchor="middle" class="t">装饰写入使用 batch API</text>
+
+  <rect x="800" y="295" width="290" height="120" class="guard"/>
+  <text x="945" y="327" text-anchor="middle" class="h">渲染边界</text>
+  <text x="945" y="355" text-anchor="middle" class="mono">visible model</text>
+  <text x="945" y="380" text-anchor="middle" class="t">Core 只输出可见几何</text>
+  <text x="945" y="400" text-anchor="middle" class="t">平台不反算 range 和布局</text>
+
+  <path d="M255 295 C320 250, 520 235, 625 216" class="dash"/>
+  <path d="M600 295 C660 252, 790 235, 865 216" class="dash"/>
+  <path d="M945 295 C1005 255, 1050 240, 1070 216" class="dash"/>
+
+  <rect x="155" y="500" width="890" height="115" class="core"/>
+  <text x="600" y="532" text-anchor="middle" class="h">核心取舍</text>
+  <text x="600" y="560" text-anchor="middle" class="t">平台原生渲染保留字体质量；C++ Core 统一编辑和布局；跨语言边界只承载必要事实。</text>
+  <text x="600" y="584" text-anchor="middle" class="small">反调 JNI/NAPI 对象不是免费操作，所以 SweetEditor 把调用次数压到可见范围、dirty 行和测量缓存里。</text>
+</svg>

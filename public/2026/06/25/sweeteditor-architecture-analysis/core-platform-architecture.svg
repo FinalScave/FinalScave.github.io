@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">SweetEditor Core 与平台层职责拆分</title>
+  <desc id="desc">平台层负责输入、测量和原生绘制，C++ Core 负责文档、布局、装饰、IME、交互和撤销等编辑语义。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .card { fill: #ffffff; stroke: #d9dee8; stroke-width: 2; rx: 10; }
+      .platform { fill: #edf6ff; stroke: #77aee8; stroke-width: 2; rx: 9; }
+      .bridge { fill: #fff7e8; stroke: #e5a84a; stroke-width: 2; rx: 9; }
+      .core { fill: #eef8f0; stroke: #57ad70; stroke-width: 2.5; rx: 12; }
+      .module { fill: #ffffff; stroke: #8dc99f; stroke-width: 1.8; rx: 8; }
+      .output { fill: #f2efff; stroke: #9077d6; stroke-width: 2; rx: 9; }
+      .title { font: 700 30px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .subtitle { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+      .h { font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #111827; }
+      .t { font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #374151; }
+      .small { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; fill: #4b5563; }
+      .mono { font: 600 13px ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; fill: #1f2937; }
+      .arrow { stroke: #596273; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #8b95a7; stroke-width: 2; fill: none; stroke-dasharray: 7 6; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#596273"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="650"/>
+  <text x="600" y="52" text-anchor="middle" class="title">SweetEditor 的核心边界</text>
+  <text x="600" y="82" text-anchor="middle" class="subtitle">编辑语义集中在 Core，平台层只保留输入桥接、字体测量和原生绘制</text>
+
+  <rect x="70" y="125" width="1060" height="120" class="card"/>
+  <text x="95" y="158" class="h">平台层：Input + Native Render</text>
+  <g>
+    <rect x="100" y="180" width="130" height="42" class="platform"/>
+    <text x="165" y="206" text-anchor="middle" class="t">Android Canvas</text>
+    <rect x="250" y="180" width="130" height="42" class="platform"/>
+    <text x="315" y="206" text-anchor="middle" class="t">Apple CoreText</text>
+    <rect x="400" y="180" width="155" height="42" class="platform"/>
+    <text x="477" y="206" text-anchor="middle" class="t">Swing / WinForms</text>
+    <rect x="575" y="180" width="130" height="42" class="platform"/>
+    <text x="640" y="206" text-anchor="middle" class="t">OHOS ArkUI</text>
+    <rect x="725" y="180" width="165" height="42" class="platform"/>
+    <text x="807" y="206" text-anchor="middle" class="t">Flutter / Avalonia</text>
+    <rect x="910" y="180" width="180" height="42" class="platform"/>
+    <text x="1000" y="206" text-anchor="middle" class="t">输入法 / 手势 / 菜单</text>
+  </g>
+
+  <rect x="145" y="305" width="910" height="68" class="bridge"/>
+  <text x="600" y="334" text-anchor="middle" class="h">桥接层：JNI / C API / Swift Bridge / NAPI / FFI</text>
+  <text x="600" y="358" text-anchor="middle" class="small">传递句柄、二进制 payload、TextMeasurer 回调；不重写编辑器语义</text>
+
+  <rect x="110" y="435" width="980" height="145" class="core"/>
+  <text x="600" y="465" text-anchor="middle" class="h">SweetEditor Core (C++17)</text>
+  <g>
+    <rect x="150" y="495" width="135" height="54" class="module"/>
+    <text x="217" y="518" text-anchor="middle" class="mono">Document</text>
+    <text x="217" y="538" text-anchor="middle" class="small">Piece Table / 行缓存</text>
+    <rect x="305" y="495" width="135" height="54" class="module"/>
+    <text x="372" y="518" text-anchor="middle" class="mono">TextLayout</text>
+    <text x="372" y="538" text-anchor="middle" class="small">增量布局 / 可见行</text>
+    <rect x="460" y="495" width="135" height="54" class="module"/>
+    <text x="527" y="518" text-anchor="middle" class="mono">Decoration</text>
+    <text x="527" y="538" text-anchor="middle" class="small">高亮 / Inlay / Guides</text>
+    <rect x="615" y="495" width="135" height="54" class="module"/>
+    <text x="682" y="518" text-anchor="middle" class="mono">IME</text>
+    <text x="682" y="538" text-anchor="middle" class="small">command / text_update</text>
+    <rect x="770" y="495" width="135" height="54" class="module"/>
+    <text x="837" y="518" text-anchor="middle" class="mono">Interaction</text>
+    <text x="837" y="538" text-anchor="middle" class="small">手势 / 命中测试</text>
+    <rect x="925" y="495" width="125" height="54" class="module"/>
+    <text x="987" y="518" text-anchor="middle" class="mono">Undo</text>
+    <text x="987" y="538" text-anchor="middle" class="small">编辑合并 / 回退</text>
+  </g>
+
+  <rect x="820" y="297" width="230" height="40" class="output"/>
+  <text x="935" y="322" text-anchor="middle" class="mono">EditorRenderModel</text>
+
+  <path d="M600 245 L600 305" class="arrow"/>
+  <path d="M600 373 L600 435" class="arrow"/>
+  <path d="M817 435 C850 395, 895 365, 930 337" class="arrow"/>
+  <path d="M820 317 C700 285, 450 282, 300 305" class="dash"/>
+  <text x="485" y="286" class="small">平台字体测量反调，但只发生在布局需要时</text>
+
+  <text x="95" y="618" class="subtitle">结果：平台保留自己的文字质量和 UI 体验，Core 保留唯一一套编辑行为。</text>
+</svg>
