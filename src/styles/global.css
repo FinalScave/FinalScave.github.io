@@ -590,6 +590,19 @@ img {
   padding: 18px;
 }
 
+.post-content pre code {
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
+.post-content pre code span {
+  background: transparent !important;
+}
+
 .post-content .highlight table {
   width: 100%;
   border-collapse: collapse;
